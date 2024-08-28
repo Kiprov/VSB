@@ -2480,7 +2480,7 @@ end)()
 doomtheme.SoundId = "rbxassetid://1837278308"
 doomtheme:Play()
 doomtheme.Volume = 2
-doomtheme.TimePosition = 20.7
+doomtheme.TimePosition = 0
 jesterWeld.C0 = jesterWeld.C0 * CFrame.new(.3,-.3,0) * CFrame.Angles(math.rad(0),math.rad(-90),0)
 mjester.MeshId = "rbxassetid://193760002"
 mjester.TextureId = "rbxassetid://379225327"
