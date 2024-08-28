@@ -230,7 +230,7 @@ smoothen = game:GetService("TweenService")
 randomcolortable={"Cyan","Really red","Cyan","Royal purple","Lime green","Crimson","Daisy yellow","Eggplant"}
 random = #randomcolortable
 smoothen = game:GetService("TweenService")
-local dmt2 = {143536946,2858940717}
+local dmt2 = {1842652230,9041745502}
 local laughs = {2011349649,2011349983,2011351501,2011352223,2011355991,2011356475}
 local soundtable2 = {2616767970,2614901458,2616891279,2614896603,2616768521,2616848595,2614905967,2614918002,2563244734,2563244134,2563244444,2563244999,2563245407,2563654940,2563656758,2563658474,2563659001}
 laugh = #laughs
@@ -425,8 +425,8 @@ doomtheme = Instance.new("Sound",Torso)
 doomtheme.Volume = 4
 doomtheme.Name = "doomtheme"
 doomtheme.Looped = true
-doomtheme.SoundId = "rbxassetid://1382488262"
-doomtheme.TimePosition = 20.72
+doomtheme.SoundId = "rbxassetid://1837278308"
+doomtheme.TimePosition = 0
 doomtheme:Play()
 else
 dmt2random = dmt2[math.random(1,#dmt2)]
@@ -1202,7 +1202,7 @@ realmofexistence.SoundId = "rbxassetid://2565721367"
 realmofexistence:Play()
 end)()
 wait(2.2)
-doomtheme.SoundId = "rbxassetid://2902017580"
+doomtheme.SoundId = "rbxassetid://9038254260"
 doomtheme:Play()
 doomtheme.Pitch = 1
 doomtheme.TimePosition = 0
@@ -1337,7 +1337,7 @@ swait()
 end
 nball:Remove()
 end)()
-doomtheme.SoundId = "rbxassetid://1382488262"
+doomtheme.SoundId = "rbxassetid://1837278308"
 doomtheme:Play()
 doomtheme.Volume = 6
 doomtheme.Pitch = 1
