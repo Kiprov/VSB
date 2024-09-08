@@ -1,5 +1,5 @@
 script.Parent = owner.Character
-local KD = Instance.new("BindableEvent",script)
+local KD = Instance.new("RemoteEvent",script)
 KD.Name = "KD"
 local KU = KD:Clone()
 KU.Name = "KU"
