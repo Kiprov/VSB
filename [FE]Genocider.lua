@@ -265,7 +265,7 @@ Credit to CKbackup's and idk..
 ]]--
 wait(1 / 60)
 Effects = { }
-local Player = game.Players.localPlayer
+local Player = Converter:GetPlayer()
 local Character = Player.Character
 local Humanoid = Character.Humanoid
 local Mouse = Player:GetMouse()
