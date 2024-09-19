@@ -180,80 +180,80 @@ LoadLibrary=function(lib)
 	else
 		return {}
 	end
-  end
-  --Fake event to make stuff like Mouse.KeyDown work
-	local Disconnect_Function = function(this)
-		this[1].Functions[this[2]] = nil
-	end
-	local Disconnect_Metatable = {__index={disconnect=Disconnect_Function,Disconnect=Disconnect_Function}}
-	local FakeEvent_Metatable = {__index={
-		Connect = function(this,f)
-			local i = tostring(math.random(0,10000))
-			while this.Functions[i] do
-				i = tostring(math.random(0,10000))
-			end
-			this.Functions[i] = f
-			return setmetatable({this,i},Disconnect_Metatable)
+end
+--Fake event to make stuff like Mouse.KeyDown work
+local Disconnect_Function = function(this)
+	this[1].Functions[this[2]] = nil
+end
+local Disconnect_Metatable = {__index={disconnect=Disconnect_Function,Disconnect=Disconnect_Function}}
+local FakeEvent_Metatable = {__index={
+	Connect = function(this,f)
+		local i = tostring(math.random(0,10000))
+		while this.Functions[i] do
+			i = tostring(math.random(0,10000))
 		end
-	}}
-	FakeEvent_Metatable.__index.connect = FakeEvent_Metatable.__index.Connect
-	local function fakeEvent()
-		return setmetatable({Functions={}},FakeEvent_Metatable)
+		this.Functions[i] = f
+		return setmetatable({this,i},Disconnect_Metatable)
 	end
-  local UIS = {InputBegan=fakeEvent(),InputEnded=fakeEvent()}
-  local CAS = {Actions={},BindAction=function(self,name,fun,touch,...)
-		CAS.Actions[name] = fun and {Name=name,Function=fun,Keys={...}} or nil
-	end}
-	--Merged 2 functions into one by checking amount of arguments
-	CAS.UnbindAction = CAS.BindAction
-  ----Sandboxed game object that allows the usage of client-side methods and services
-	--Real game object
-	local RealGame = game
+}}
+FakeEvent_Metatable.__index.connect = FakeEvent_Metatable.__index.Connect
+local function fakeEvent()
+	return setmetatable({Functions={}},FakeEvent_Metatable)
+end
+local UIS = {InputBegan=fakeEvent(),InputEnded=fakeEvent()}
+local CAS = {Actions={},BindAction=function(self,name,fun,touch,...)
+	CAS.Actions[name] = fun and {Name=name,Function=fun,Keys={...}} or nil
+end}
+--Merged 2 functions into one by checking amount of arguments
+CAS.UnbindAction = CAS.BindAction
+----Sandboxed game object that allows the usage of client-side methods and services
+--Real game object
+local RealGame = game
 
-	--Metatable for fake service
-	local FakeService_Metatable = {
-		__index = function(self,k)
-			local s = rawget(self,"_RealService")
-			if s then
-				return typeof(s[k])=="function"
+--Metatable for fake service
+local FakeService_Metatable = {
+	__index = function(self,k)
+		local s = rawget(self,"_RealService")
+		if s then
+			return typeof(s[k])=="function"
 				and function(_,...)return s[k](s,...)end or s[k]
-			end
-		end,
-		__newindex = function(self,k,v)
-			local s = rawget(self,"_RealService")
-			if s then s[k]=v end
 		end
-	}
-	local function FakeService(t,RealService)
-		t._RealService = typeof(RealService)=="string" and RealGame:GetService(RealService) or RealService
-		return setmetatable(t,FakeService_Metatable)
+	end,
+	__newindex = function(self,k,v)
+		local s = rawget(self,"_RealService")
+		if s then s[k]=v end
 	end
+}
+local function FakeService(t,RealService)
+	t._RealService = typeof(RealService)=="string" and RealGame:GetService(RealService) or RealService
+	return setmetatable(t,FakeService_Metatable)
+end
 --Fake game object
-	local FakeGame = {
-		GetService = function(self,s)
-			return rawget(self,s) or RealGame:GetService(s)
+local FakeGame = {
+	GetService = function(self,s)
+		return rawget(self,s) or RealGame:GetService(s)
+	end,
+	Players = FakeService({
+		LocalPlayer = FakeService({GetMouse=function(self)return Converter end},Player)
+	},"Players"),
+	UserInputService = FakeService(UIS,"UserInputService"),
+	ContextActionService = FakeService(CAS,"ContextActionService"),
+	RunService = FakeService({
+		_btrs = {},
+		RenderStepped = RealGame:GetService("RunService").Heartbeat,
+		BindToRenderStep = function(self,name,_,fun)
+			self._btrs[name] = self.Heartbeat:Connect(fun)
 		end,
-		Players = FakeService({
-			LocalPlayer = FakeService({GetMouse=function(self)return Converter end},Player)
-		},"Players"),
-		UserInputService = FakeService(UIS,"UserInputService"),
-		ContextActionService = FakeService(CAS,"ContextActionService"),
-		RunService = FakeService({
-			_btrs = {},
-			RenderStepped = RealGame:GetService("RunService").Heartbeat,
-			BindToRenderStep = function(self,name,_,fun)
-				self._btrs[name] = self.Heartbeat:Connect(fun)
-			end,
-			UnbindFromRenderStep = function(self,name)
-				self._btrs[name]:Disconnect()
-			end,
-		},"RunService")
-	}
-	rawset(FakeGame.Players,"localPlayer",FakeGame.Players.LocalPlayer)
-	FakeGame.service = FakeGame.GetService
-	FakeService(FakeGame,game)
-	--Changing owner to fake player object to support owner:GetMouse()
-	game,owner = FakeGame,FakeGame.Players.LocalPlayer
+		UnbindFromRenderStep = function(self,name)
+			self._btrs[name]:Disconnect()
+		end,
+	},"RunService")
+}
+rawset(FakeGame.Players,"localPlayer",FakeGame.Players.LocalPlayer)
+FakeGame.service = FakeGame.GetService
+FakeService(FakeGame,game)
+--Changing owner to fake player object to support owner:GetMouse()
+game,owner = FakeGame,FakeGame.Players.LocalPlayer
 --[[
 This script is about a shotgun. Now admins listen. This is not a cheat.
 This is a serversided script.
@@ -261,7 +261,7 @@ So please no ban.
 Thank you.
 Dont know who originally made it but wasnt made by me
 Enjoy!
-]]--
+]]
 Players = game:GetService("Players") 
 Me = Converter:GetPlayer()
 Char = Me.Character
@@ -1040,6 +1040,21 @@ function Reload(once)
 		ClipIn.Ended:Connect(function()
 			ClipIn:Destroy()	
 		end)
+		for i = 0.33, 1, 0.33 do 
+			RAW.C0 = CA(MR(95-5*i), 0, MR(-65)) * CN(0.6, -0.9-0.1*i, 0) 
+			LAW.C0 = CA(MR(100-5*i), 0, MR(-40)) * CN(0.5+0.1*i, -0.35+0.1*i, 0) 
+			HW.C0 = CA(MR(-15+11*i), MR(5), MR(0)) * CN(0.4, 0, -1.2) 
+			PumpWeld.C1 = CN(0, 0, 0.1*i) 
+			wait() 
+		end 
+		for i = 0.33, 1, 0.33 do 
+			RAW.C0 = CA(MR(90-3*i), 0, MR(-65)) * CN(0.6, -1+0.05*i, 0) 
+			LAW.C0 = CA(MR(95-5*i), 0, MR(-40)) * CN(0.6+0.2*i, -0.25+0.35*i, 0) 
+			HW.C0 = CA(MR(-4+4*i), MR(5), MR(0)) * CN(0.4, 0, -1.2) 
+			PumpWeld.C1 = CN(0, 0, 0.1+0.6*i) 
+			Flip.C1 = CN(0, 0, 0.5*i) 
+			wait() 
+		end
 		for i = 0.33, 1, 0.33 do 
 			RAW.C0 = CA(MR(87+3*i), 0, MR(-65)) * CN(0.6, -0.95+0.05*i, 0) 
 			LAW.C0 = CA(MR(90-5*i), 0, MR(-40)) * CN(0.8-0.3*i, 0.1-0.6*i, 0) 
