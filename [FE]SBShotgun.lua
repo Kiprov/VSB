@@ -1403,7 +1403,9 @@ Mouse.KeyDown:Connect(function(key)
 						end 
 					end) 
 					wait()
-					if not Selected then continue end
+					if not Selected then
+				       --Nothing happens
+				    end
 				end 
 			end) 
 			Mouse.Button1Down:connect(function() 
