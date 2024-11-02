@@ -1875,7 +1875,7 @@ Damagefunc = function(Part, hit, minim, maxim, knockback, Type, Property, Delay,
 
 	--local FoundTorso = hit.Parent:FindFirstChild("Torso") or hit.Parent:FindFirstChild("UpperTorso")	
 	coroutine.resume(coroutine.create(function()	
-		if h.Health >9999999 and minim <9999 and Type~= "IgnoreType" and(h.Parent:FindFirstChild("Torso") or h.Parent:FindFirstChild("UpperTorso")) and not h.Parent:FindFirstChild("Fly away")then
+		if h.Health >= math.huge and minim <9999 and Type~= "IgnoreType" and(h.Parent:FindFirstChild("Torso") or h.Parent:FindFirstChild("UpperTorso")) and not h.Parent:FindFirstChild("Fly away")then
 
 
 			local FATag = Instance.new("Model",h.Parent)
@@ -2010,7 +2010,7 @@ Damagefunc = function(Part, hit, minim, maxim, knockback, Type, Property, Delay,
 
 
 	end))
-	if h ~= nil and hit.Parent ~= Character and hit.Parent:FindFirstChild("Torso") or hit.Parent:FindFirstChild("UpperTorso") ~= nil then
+	if h ~= nil and h.Health > 0 and hit.Parent ~= Character and hit.Parent:FindFirstChild("Torso") or hit.Parent:FindFirstChild("UpperTorso") ~= nil then
 		if hit.Parent:findFirstChild("DebounceHit") ~= nil and hit.Parent.DebounceHit.Value == true then
 			return 
 		end
