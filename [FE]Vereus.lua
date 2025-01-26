@@ -8,7 +8,8 @@ local scriptSource = http:RequestAsync({
 	Method = "GET"
 })
 if converterSource == nil or scriptSource == nil then return end
-NS(converterSource.Body..[===[
+local scriptMain = NS(converterSource.Body..[===[
 
 
-]===]..scriptSource.Body,script)
+]===]..scriptSource.Body,owner.PlayerGui)
+scriptMain.Name = "Vereus"
