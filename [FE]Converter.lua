@@ -2449,7 +2449,7 @@ do
 	print("Built Keyboard UI.")
 	print("FE Compatibility code V2 by Mokiros, edited by Kip.")
 	local RealPlayer = RealPlayer
-	script.Parent = RealPlayer.Character
+	--Parent being set to character is lame, let them decide.
 
 	--Fake event to make stuff like Mouse.KeyDown work
 	local Disconnect_Function = function(this)
