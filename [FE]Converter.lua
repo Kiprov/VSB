@@ -10,6 +10,7 @@ do
 	Delta Mobile | Keyboard Script
 	Made by: Chillz#0348
 	Author: Lxnny ✞#5013 & Chillz#0348 (DeltaTeam)
+	FE Port: Kip
 ]]
 
 
@@ -31,6 +32,8 @@ do
 		G2L["1"]["Name"] = [[DeltaKeyboard]];
 		G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 		G2L["1"]["ResetOnSpawn"] = false;
+		G2L["1"]["IgnoreGuiInset"] = true;
+		G2L["1"]["DisplayOrder"] = math.huge;
 		G2L["1"]["Enabled"] = false;
 
 		-- StarterGui.DeltaKeyboard.Main
