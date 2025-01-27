@@ -2436,7 +2436,7 @@ do
 		G2L["156"]["Size"] = UDim2.new(0, 40, 0, 40);
 		G2L["156"]["Name"] = [[FloatingIcon]];
 		G2L["156"]["Visible"] = false;
-		G2L["156"]["Position"] = UDim2.new(0.015649452805519104, 0, 0.05, 0);
+		G2L["156"]["Position"] = UDim2.new(0.015649452805519104, 0, 0.15, 0);
 
 		-- StarterGui.DeltaKeyboard.FloatingIcon.UICorner
 		G2L["157"] = Instance.new("UICorner", G2L["156"]);
