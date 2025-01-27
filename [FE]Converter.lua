@@ -2434,6 +2434,7 @@ do
 		G2L["156"]["BackgroundColor3"] = Color3.fromRGB(30, 30, 30);
 		G2L["156"]["Image"] = [[rbxassetid://13501536441]];
 		G2L["156"]["Size"] = UDim2.new(0, 40, 0, 40);
+		G2L["156"]["Position"] = UDim2.new(0,0,0,-100);
 		G2L["156"]["Name"] = [[FloatingIcon]];
 		G2L["156"]["Visible"] = false;
 		G2L["156"]["Position"] = UDim2.new(0.015649452805519104, 0, 0.03064066171646118, 0);
