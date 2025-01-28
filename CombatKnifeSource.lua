@@ -246,8 +246,10 @@ Weld(blade, bladetip, 0, -0.5, 0, 0, 0, 0)
 Mo.Parent = char
 TH.Part1 = sheath
  
-if not script.Parent:IsA("HopperBin") then
-        bin = Instance.new("HopperBin", me.Backpack)
+if not script:FindFirstChild(Toolname) then
+        bin = Instance.new("Tool", me.Backpack)
+        bin.RequiresHandle = false
+        bin.ManualActivationOnly = true
         bin.Name = Toolname
         script.Parent = bin
 end
@@ -519,20 +521,26 @@ function slice()
 end
  
 function select(mouse)
+        selected = true
         RABW2.Part1 = Rarm
         LABW2.Part1 = nil
         RLBW2.Part1 = nil
         LLBW2.Part1 = nil
         unsheath()
         char.Humanoid.WalkSpeed = 20
-        mouse.Button1Down:connect(function()
-                if able then
-                        able = false
-                        slash(mouse.Hit.p)
-                        able = true
-                end
-        end)
-        mouse.KeyDown:connect(function(key)
+end
+ 
+function deselect()
+        selected = false
+        char.Humanoid.WalkSpeed = 16
+        sheath()
+        RABW2.Part1 = nil
+        LABW2.Part1 = nil
+        RLBW2.Part1 = nil
+        LLBW2.Part1 = nil
+end
+mouse.KeyDown:connect(function(key)
+if not selected then return end
                 if able then
                         key = key:lower()
                         if key == "z" then
@@ -552,16 +560,13 @@ function select(mouse)
                         end
                 end
         end)
+bin.Equipped:connect(select)
+bin.Activated:connect(function()
+if not selected then return end
+if able then
+   able = false
+   slash(mouse.Hit.p)
+   able = true
 end
- 
-function deselect()
-        char.Humanoid.WalkSpeed = 16
-        sheath()
-        RABW2.Part1 = nil
-        LABW2.Part1 = nil
-        RLBW2.Part1 = nil
-        LLBW2.Part1 = nil
-end
- 
-bin.Selected:connect(select)
-bin.Deselected:connect(deselect)
+end)
+bin.Unequipped:connect(deselect)
