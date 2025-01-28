@@ -8,6 +8,7 @@ do
 end
  
 me = game.Players.LocalPlayer
+mouse = me:GetMouse()
 char = me.Character
  
 Toolname = "Knife"
