@@ -259,4 +259,4 @@ function DoIt()
         --wait(0.000001)
 end
 game:GetService("RunService").Stepped:connect(DoIt)
-Mouse.Move:connect(DoIt)
+--Mouse.Move:connect(DoIt)
