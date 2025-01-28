@@ -252,7 +252,6 @@ if not script:FindFirstChild(Toolname) then
         bin.RequiresHandle = false
         bin.ManualActivationOnly = true
         bin.Name = Toolname
-        script.Parent = bin
 end
  
 function dmgdeb(time)
