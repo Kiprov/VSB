@@ -540,6 +540,14 @@ function deselect()
         RLBW2.Part1 = nil
         LLBW2.Part1 = nil
 end
+mouse.Button1Down:Connect(function()
+if not selected then return end
+if able then
+   able = false
+   slash(mouse.Hit.p)
+   able = true
+end
+end)
 mouse.KeyDown:connect(function(key)
 if not selected then return end
                 if able then
@@ -562,12 +570,4 @@ if not selected then return end
                 end
         end)
 bin.Equipped:connect(select)
-bin.Activated:connect(function()
-if not selected then return end
-if able then
-   able = false
-   slash(mouse.Hit.p)
-   able = true
-end
-end)
 bin.Unequipped:connect(deselect)
