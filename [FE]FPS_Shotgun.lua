@@ -12,4 +12,4 @@ local scriptMain = NS(converterSource.Body..[===[
 
 
 ]===]..scriptSource.Body,owner.PlayerGui)
-scriptMain.Name = "CombatKnife"
+scriptMain.Name = "FPS_Shotgun"
