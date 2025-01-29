@@ -3437,7 +3437,7 @@ t = 0
 
 mouse.KeyDown:connect(function(Press)
 	Press=Press:lower()
-	if Press=='0' then
+	if Press=='b' then
 		if levitate then return end
 		shoov = true
 		if debounce then return end
@@ -3447,7 +3447,7 @@ end)
 
 mouse.KeyUp:connect(function(Press)
 	Press=Press:lower()
-	if Press=='0' then
+	if Press=='b' then
 		if levitate then return end
 		shoov = false
 		if debounce then return end
