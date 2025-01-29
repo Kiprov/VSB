@@ -31,7 +31,7 @@ wait(1/60)
 --Making CamShake Values
 local ss = Instance.new("BoolValue",script)
 ss.Name = "ScreenShake"
-local ip,sp = Instance.new("NumberValue",script),Instance.new("NumberValue",script)
+local ip,sp = Instance.new("NumberValue",ss),Instance.new("NumberValue",ss)
 ip.Name = "IdlePower"
 sp.Name = "ShakePower"
 local camShake = NLS([[
