@@ -60,10 +60,10 @@ cg.ScreenShake.IdlePower.Changed:Connect(function()
 	end
 end)
 repeat wait() until game.Players.LocalPlayer.Character
-repeat wait() until game.Players.LocalPlayer.Character.Humanoid
+repeat wait() until game.Players.LocalPlayer.Character.noneofurbusiness
 while true do
 	local rot = Vector3.new((math.random(-15,15)/15)*power.Value,(math.random(-15,15)/15)*power.Value,(math.random(-15,15)/8)*power.Value)
-	game.Players.LocalPlayer.Character.Humanoid.CameraOffset=Vector3.new(math.random(-30,30)/100*power.Value,math.random(-30,30)/100*power.Value,math.random(-30,30)/100*power.Value)
+	game.Players.LocalPlayer.Character.noneofurbusiness.CameraOffset=Vector3.new(math.random(-30,30)/100*power.Value,math.random(-30,30)/100*power.Value,math.random(-30,30)/100*power.Value)
 	workspace.CurrentCamera.CFrame=workspace.CurrentCamera.CFrame*CFrame.Angles(math.rad(rot.X),math.rad(rot.Y),math.rad(rot.Z))
 	game:GetService("RunService").RenderStepped:wait()
 	workspace.CurrentCamera.CFrame=workspace.CurrentCamera.CFrame*CFrame.Angles(math.rad(-rot.X),math.rad(-rot.Y),0)
