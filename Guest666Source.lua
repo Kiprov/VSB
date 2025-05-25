@@ -33,7 +33,7 @@ LoadLibrary=function(lib)
 		return {}
 	end
   end
-script.Name="Guest 666"
+script.Parent = workspace script.Name="Guest 666"
 if 1 then
 	local MovesGui=Instance.new("ScreenGui",owner:FindFirstChildOfClass("PlayerGui"))
 	local Frm=Instance.new("Frame",MovesGui)Frm.BackgroundColor3=Color3.new()Frm.BorderSizePixel=0
@@ -52,7 +52,7 @@ Click:Swing
 *Q   : Control
 *F   : Invisible
 
-à¸¢Âà¹€à¸˜Â†Invisible will make you invisible.
+Invisible will make you invisible.
 but it deactives automatically while
 using Control , or swinging.
 ]]
@@ -373,6 +373,7 @@ StatModel.Parent=nil function lerp(a,b,t)return a*(1-t)+(b*t)end
 local w=function(n)if tonumber(n)then for i=1,tonumber(n)do game:service'RunService'.RenderStepped:wait()end else game:service'RunService'.RenderStepped:wait()end return true end
 name="Guest 666"Improved=false chatflg=false chatflg2=false local Stroke=""Murdering=false TimeStop=false
 local Players=game:FindFirstChildOfClass("Players")EnergyConsume=false local Target=nil
+local CAS = game:GetService("ContextActionService")
 local PL=owner local PG=PL:FindFirstChildOfClass("PlayerGui")
 local PC=PL.Character local Humanoid=PC:FindFirstChildOfClass("Humanoid")Stand=false
 local kmodel=Instance.new("Model",PC)Mouse=PL:GetMouse()Active=false
@@ -424,16 +425,11 @@ end
 function resetmw()MainWeld.C0=CFrame.Angles(math.rad(90),0,math.rad(180))*CFrame.new(0,1,1)MainWeld.C1=CFrame.new()end
 local Create=LoadLibrary("RbxUtility").Create
 local Swing=Instance.new("Sound",kmodel)Swing.SoundId="rbxassetid://12222208"Swing.Volume=1 local HitS=Instance.new("Sound",kmodel)HitS.SoundId="rbxassetid://429400881"HitS.Volume=2
-local UTHit=Instance.new("Sound",kmodel)UTHit.SoundId="rbxassetid://388826051"UTHit.Volume=5
+local UTHit=Instance.new("Sound",kmodel)UTHit.SoundId="rbxassetid://406913243"UTHit.Volume=5
 local newMotor = function(part0, part1, c0, c1)local w = Create('Motor'){Parent = part0,Part0 = part0,Part1 = part1,C0 = c0,C1 = c1}return w end
 RootCF = CFrame.fromEulerAnglesXYZ(-1.57, 0, 3.14)NeckCF = CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0)
 function clerp(a, b, t)return a:lerp(b, t)end
 local RootPart = PC.HumanoidRootPart
-local RootJoint = RootPart.RootJoint
-local RW = newMotor(Torso,RightArm, CFrame.new(1.5, 0, 0), CFrame.new(0, 0, 0))local LW = newMotor(Torso,LeftArm, CFrame.new(-1.5, 0, 0), CFrame.new(0, 0, 0))
-local RH = newMotor(Torso,RightLeg, CFrame.new(.5, -2, 0), CFrame.new(0, 0, 0))local LH = newMotor(Torso,LeftLeg, CFrame.new(-.5, -2, 0), CFrame.new(0, 0, 0))
-RootJoint.C1 = CFrame.new(0, 0, 0)RootJoint.C0 = CFrame.new(0, 0, 0)Torso.Neck.C1 = CFrame.new(0, 0, 0)Torso.Neck.C0 = CFrame.new(0, 1.5, 0)local rarmc1 = RW.C1
-local larmc1 = LW.C1 local rlegc1 = RH.C1 local llegc1 = LH.C1 local resetc1 = false
 local txt=Instance.new("BillboardGui",PC)
 txt.Adornee=PC.Head
 txt.Name="face"txt.Size=UDim2.new(4096, 0, 10, 0)txt.StudsOffset=Vector3.new(0, 3, 0)
@@ -509,23 +505,7 @@ function DoRagdoll(Model)
 	end
 	if Improved then Model:Remove()end
 end
-function PlayAnimationFromTable(table, speed, bool)
-	refit()
-	RootJoint.C0 = clerp(RootJoint.C0, table[1], speed) 
-	Torso.Neck.C0 = clerp(Torso.Neck.C0, table[2], speed)
-	RW.C0 = clerp(RW.C0, table[3], speed)LW.C0 = clerp(LW.C0, table[4], speed)RH.C0 = clerp(RH.C0, table[5], speed)LH.C0 = clerp(LH.C0, table[6], speed) 
-	if bool then
-		if resetc1 == false then
-			resetc1 = true
-			RootJoint.C1 = RootJoint.C1
-			Torso.Neck.C1 = Torso.Neck.C1
-			RW.C1 = rarmc1
-			LW.C1 = larmc1
-			RH.C1 = rlegc1
-			LH.C1 = llegc1
-		end
-	end
-end
+-- Unused snippet of code below.
 --[[PlayAnimationFromTable({
 			CFrame.new(0, 0, 0) * CFrame.Angles(0, 0, 0), --torso
 			CFrame.new(0, 1.5, 0) * CFrame.Angles(0, 0, 0), --head
@@ -577,7 +557,19 @@ for e = 1, #BODY do
 end
 function refit()
 	local IT=Instance.new
-	PC.Parent=script
+	PC.Parent=workspace
+	local music = PC:FindFirstChild("Spooky")
+	local pl = RootPart:FindFirstChild("Aura")
+	local face = Head:FindFirstChild("face")
+	if (music) then
+	music.Playing = not inv and true or false
+	end
+	if (pl) then
+	pl.Enabled = not inv and true or false
+	end
+	if (face) then
+	face.Transparency = not inv and 0 or 1
+	end
 	for e = 1, #BODY do
 		if BODY[e] ~= nil then
 			local STUFF = BODY[e]
@@ -600,39 +592,273 @@ function refit()
 	end
 end
 Humanoid.Died:connect(refit)
+local S =setmetatable({},{__index=function(s,i)local serv = select(2,pcall(game.GetService,game,i))if(serv)then rawset(s,i,serv) return serv end end})
+local RNG = (function()
+local R=Random.new()
+return function(min,max,intOrDivider)
+local min=min or 0
+local max=max or 1
+
+if(typeof(intOrDivider)=='number')then
+return R:NextInteger(min,max)/intOrDivider
+else
+if(intOrDivider)then
+return R:NextInteger(min,max)
+else
+return R:NextNumber(min,max)
+end
+end
+end
+end)()
+
+local Camera = workspace.CurrentCamera
+local M = {R=math.rad;RNG=RNG;RRNG=function(...)return math.rad(RNG(...))end;P=math.pi;C=math.clamp;S=math.sin;C=math.cos;T=math.tan;AS=math.asin;AC=math.acos;AT=math.atan;D=math.deg;H=math.huge;}
+local CF = {N=CFrame.new;A=CFrame.Angles;fEA=CFrame.fromEulerAnglesXYZ;}
+local C3 = {N=Color3.new;RGB=Color3.fromRGB;HSV=function(...)local data={...}if(typeof(data[1])=='Color3')then return Color3:ToHSV(...)else return Color3.fromHSV(...)end;end;}
+local V3 = {N=Vector3.new};
+local IN = Instance.new;
+local R3 = Region3.new
+local Plr = owner
+local PlrGui = Plr:FindFirstChildOfClass'PlayerGui'
+local Char = Plr.Character;
+local Hum = Char:FindFirstChildOfClass'Humanoid'
+assert(Hum and Hum.RigType==Enum.HumanoidRigType.R6,"You need to have a Humanoid and be R6.")
+local RArm = Char:WaitForChild'Right Arm'
+local LArm = Char:WaitForChild'Left Arm'
+local Torso = Char:WaitForChild'Torso'
+local RLeg = Char:WaitForChild'Right Leg'
+local LLeg = Char:WaitForChild'Left Leg'
+local Head = Char:WaitForChild'Head'
+local Root = Char:WaitForChild'HumanoidRootPart'
+local NeutralAnims = false; -- for later
+local Attack = false; -- for later
+local Joints = {}
+local Sine = 0
+local Change = 1
+local CamCFrame=CFrame.new()
+
+
+function Joint(name,part0,part1,c0,c1,type)
+local joint = IN(type or "Motor6D")
+joint.Part0 = part0
+joint.Part1 = part1
+joint.C0 = c0 or CF.N()
+joint.C1 = c1 or CF.N()
+joint.Parent=part0
+joint.Name=name or part0.." to "..part1.." "..joint.ClassName
+return joint
+end
+
+function NewInstance(instance,parent,properties)if(properties.Parent)then properties.Parent=parent end;local new = IN(instance)if(properties)then for prop,val in next, properties do pcall(function() new[prop]=val end)end;end;new.Parent=parent;return new;end
+
+
+
+local WalkSpeed = 16
+
+
+function GetJoint(joint)
+for i,v in next, Joints do
+if(i==joint or v.J==joint)then
+return v,i;
+end
+end	
+return nil;
+end
+
+function getLength(table)local len=0;for i,v in next,table do len=len+1 end;return len;end
+function getFirstEntry(table)for i,v in next,table do return i,v end;return nil;end
+
+function Animate(joint,props,alpha,style,dir)
+local joint = typeof(joint)=='string' and Joints[joint].J or typeof(joint)=='table' and joint.J or typeof(joint)=='Instance' and joint or error("lol animate needs a string, table or instance")
+local propName='C0'
+if(typeof(props)=='table' and getLength(props)==1 and select(2,getFirstEntry(props)).lerp)then
+propName,props=getFirstEntry(props)
+end
+
+if(style=='Lerp' and props.lerp)then
+joint[propName] = joint[propName]:lerp(props,alpha)
+else
+if(typeof(props)=='CFrame')then
+props={C0=props}
+end
+local info = TweenInfo.new(alpha or 1,(style~='Lerp' and style) or Enum.EasingStyle.Linear,dir or Enum.EasingDirection.Out,0,false,0)
+local tween = S.TweenService:Create(joint,info,props)
+tween:Play();
+return tween;
+end
+end
+
+Joints['RJ'] = Joint("RootJoint",Root,Torso,CF.N(),CF.N())
+Joints['NK'] = Joint("Neck",Torso,Head,CF.N(0,1.5,0),CF.N())
+Joints['LS'] = Joint("Left Shoulder",Torso,LArm,CF.N(-1.5,0,0),CF.N(0,0,0))
+Joints['RS'] = Joint("Right Shoulder",Torso,RArm,CF.N(1.5,0,0),CF.N(0,0,0))
+Joints['LH'] = Joint("Left Hip",Root,LLeg,CF.N(-.5,-2,0),CF.N(0,0,0))
+Joints['RH'] = Joint("Right Hip",Root,RLeg,CF.N(.5,-2,0),CF.N(0,0,0))
+
+for i,v in next, Joints do Joints[i]={J=v,D={C0=v.C0,C1=v.C1}} end
+
+local AHB = Instance.new("BindableEvent")
+do
+local Timeframe = 0;
+local LastFrame= 0;
+
+local FPS = 60
+AHB:Fire()
+
+game:GetService("RunService").Heartbeat:connect(function(s, p)
+Timeframe = Timeframe + s
+if(Timeframe >= 1/FPS)then
+for i = 1, math.floor(Timeframe/(1/FPS)) do
+AHB:Fire()
+end
+LastFrame = tick()
+Timeframe = Timeframe - (1/FPS) * math.floor(Timeframe / (1/FPS))
+end
+end)
+end
+
+function fwait(Frames)
+for i = 1,((typeof(Frames)~='number' or Frames<=0) and 1 or Frames)do
+AHB.Event:wait()
+end
+end
+
+for _,v in next, Hum:GetPlayingAnimationTracks() do
+v:Stop();
+end
+
+pcall(game.Destroy,Char:FindFirstChild'Animate')
+pcall(game.Destroy,Hum:FindFirstChild'Animator')
+
+function Tween(object,properties,time,style,dir,repeats,reverse,delay)
+local info = TweenInfo.new(time or 1,style or Enum.EasingStyle.Linear,dir or Enum.EasingDirection.Out,repeats or 0,reverse or false,delay or 0)
+local tween = S.TweenService:Create(object,info,properties)
+tween:Play()
+return tween;
+end
+
+local function numLerp(Start,Finish,Alpha)
+return Start + (Finish- Start) * Alpha
+end
+
+function IsValidEnum(val,enum,def)
+local enum = Enum[tostring(enum)]
+local succ,err=pcall(function() return enum[val.Name] end)
+if(not err)then
+return val
+else
+return def
+end
+end
+
+function IsValid(val,type,def)
+if(typeof(type)=='string')then
+return (typeof(val)==type and val or def)
+elseif(typeof(type)=='table')then
+for i,v in next, type do
+if(typeof(val)==v)then
+return val
+end
+end
+end
+return def
+end
+
+function GetKeyframe(sequence,currentTime,lifeTime)
+local scale = currentTime/lifeTime
+for i = 1,#sequence.Keypoints do
+local keyframe = sequence.Keypoints[i]
+local nframe = sequence.Keypoints[i+1]
+if(not nframe or keyframe.Time>=scale and keyframe.Time<nframe.Time)then
+return keyframe
+end
+end
+return sequence.Keypoints[1];
+end;
+
+function CastRay(startPos,endPos,range,ignoreList)
+local ray = Ray.new(startPos,(endPos-startPos).unit*range)
+local part,pos,norm = workspace:FindPartOnRayWithIgnoreList(ray,ignoreList or {Char},false,true)
+return part,pos,norm,(pos and (startPos-pos).magnitude)
+end
 spawn(function()local c=0 local i3=0
-	while w()do i3=i3+1
-		b=b-1 if b<0 then b=0 end
+    while true do
+    i3=i3+1
+    b=b-1 if b<0 then b=0 end
 		local h,p=RayForMovingObj(CFrame.new(main.Position)*CFrame.Angles(math.rad(-90),0,0),7,nil)
 		if h and b~=0 and i3%3==0 then print("1")
 		local idk=Instance.new("Part",PC)idk.Size=Vector3.new()idk.Material="Glass"idk.Color=Color3.new(.75)idk.Anchored=true
 		idk.CFrame=CFrame.new(p)local m=Instance.new("SpecialMesh",idk)m.MeshType="Sphere"m.Scale=Vector3.new(b/100,.05,b/100)*10
 		spawn(function()wait(5)for i=0,1,.05  do idk.Transparency=i w()end idk:Destroy()end)
 		end
-		
-		if not Active then
-			c=c+.05
-			if walkW or walkA or walkS or walkD then
-				PlayAnimationFromTable({
-				CFrame.new(0, 0, 0) * CFrame.Angles(-.2-math.sin(c)/10, 0, 0), --torso
-				CFrame.new(0, 1.5, 0) * CFrame.Angles(-.3,0, 0), --head
-				CFrame.new(1.5, 0, -math.sin(-c)/3) * CFrame.Angles(math.sin(-c)/3, 0, 0), --right arm
-				CFrame.new(-1.5, 0, -math.sin(c)/3) * CFrame.Angles(math.sin(c)/3, 0, 0), --left arm
-				CFrame.new(.5, -2,-math.sin(c)) * CFrame.Angles(math.sin(c)/1.25,0,0),  --right leg
-				CFrame.new(-.5, -2,-math.sin(-c)) * CFrame.Angles(math.sin(-c)/1.25, 0, 0), --left leg
-				},.1,false)
-			else
-			PlayAnimationFromTable({
-			CFrame.new(0, math.sin(c)/14, 0) * CFrame.Angles(0, 0, 0), --torso
-			CFrame.new(0, 1.5, 0) * CFrame.Angles(-.3, 0, 0), --head
-			CFrame.new(1.5, 0, 0) * CFrame.Angles(0, 0, math.sin(c)/14+.1), --right arm
-			CFrame.new(-1.5, 0, 0) * CFrame.Angles(0, 0, -math.sin(c)/14+.1), --left arm
-			CFrame.new(.5, -2-math.sin(c)/15, 0) * CFrame.Angles(0, 0, 0),  --right leg
-			CFrame.new(-.5, -2-math.sin(c)/15, 0) * CFrame.Angles(0, 0, 0), --left leg
-			},.1,false)
-			end
-		end
-	end
+c=c+1
+Sine=c
+local Walking = Hum.MoveDirection.magnitude>0
+local Hit,Pos = CastRay(Root.Position,Root.Position-Vector3.new(0,1,0),4)
+local State = (Hum.Sit and "Sit" or not Hit and Root.Velocity.Y<-1 and 'Fall' or not Hit and Root.Velocity.Y>1 and 'Jump' or Walking and "Walk" or "Idle")
+local Direction = Root.CFrame:ToObjectSpace(CamCFrame).lookVector.unit
+local FwdDir = (Walking and Hum.MoveDirection*Root.CFrame.lookVector or V3.N())
+local RigDir = (Walking and Hum.MoveDirection*Root.CFrame.rightVector or V3.N())
+local Vec = {
+X=(RigDir.X+RigDir.Z)*(Hum.WalkSpeed/16),
+Z=(FwdDir.X+FwdDir.Z)*(Hum.WalkSpeed/16)
+};
+local Divide = 1
+if(Vec.Z<0)then
+Divide=math.clamp(-(1.25*Vec.Z),1,2)
+end
+Vec.Z = Vec.Z/Divide
+Vec.X = Vec.X/Divide
+Hum.WalkSpeed = WalkSpeed/Divide
+local WsFactor = 6/(WalkSpeed/16)
+if(NeutralAnims)then
+if(not Attack)then 
+if(State == 'Idle')then
+local Alpha = .1
+Animate('RJ',CF.N(0,M.S(Sine/14),0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('NK',CF.N(0,1.5,0) * CF.A(-.3,0,0),Alpha,'Lerp')
+Animate('RS',CF.N(1.5,0,0) * CF.A(0,0,M.S(Sine/14)+.1),Alpha,'Lerp')
+Animate('LS',CF.N(-1.5,0,0) * CF.A(0,0,-M.S(Sine/14)+.1),Alpha,'Lerp')
+Animate('RH',CF.N(.5,-2-M.S(Sine/15),0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('LH',CF.N(-.5,-2-M.S(Sine/15),0) * CF.A(0,0,0),Alpha,'Lerp')
+elseif(State == 'Walk')then
+local Alpha = .1
+Animate('RJ',CF.N(0,0,0)*CF.A(-.2-M.S(Sine/10),0,0),Alpha,'Lerp')
+Animate('NK',CF.N(0,1.5,0)*CF.A(-.3,0,0),Alpha,'Lerp')
+Animate('RS',CF.N(1.5,0,-M.S(-Sine/3))*CF.A(M.S(-Sine/3),0,0),Alpha,'Lerp')
+Animate('LS',CF.N(-1.5,0,-M.S(Sine/3))*CF.A(M.S(Sine/3),0,0),Alpha,'Lerp')
+Animate('LH',CF.N(-.5,-2,-M.S(-Sine))*CF.A(M.S(-Sine/1.25),0,0),Alpha,'Lerp')
+Animate('RH',CF.N(.5,-2,-M.S(Sine))*CF.A(M.S(Sine/1.25),0,0),Alpha,'Lerp')
+--[[Animate('RJ',CF.N(0,-.2+.1*M.C(Sine/(WsFactor/2)),-.1*Vec.Z)*CF.A(M.R(-10-3*M.S(Sine/(WsFactor/2)))*Vec.Z,M.R(0+5*M.S(Sine/WsFactor)),M.R(-25)*Vec.X),Alpha,'Lerp')
+Animate('NK',CF.N(0+0*M.S(Sine/3),1.45+0.1*M.S(Sine/3), -0.15+0*M.S(Sine/24)) * CF.A(M.R(-15+14*M.S(Sine/3)), M.R(0+0*M.S(Sine/3)) ,M.R(0+0*M.S(Sine/24))),0.2,'Lerp')
+Animate('RS',CF.N(1.45+0*M.S(Sine/24),0+0*M.S(Sine/3), 0+0*M.S(Sine/3)) * CF.A(M.R(0+45*M.S(Sine/6)), M.R(0-0*M.S(Sine/3)) ,M.R(0+0*M.S(Sine/3))),0.2,'Lerp')
+Animate('LS',CF.N(-1.45+0*M.S(Sine/24),0+0*M.S(Sine/4), 0-0*M.S(Sine/3)) * CF.A(M.R(0-45*M.S(Sine/6)), M.R(0+0*M.S(Sine/4)) ,M.R(0+0*M.S(Sine/3))),0.2,'Lerp')
+Animate('LH',CF.N(-.5+.8*M.S(Sine/WsFactor)*Vec.X,-1.8+.3*M.C(Sine/WsFactor),-.1-1.25*M.S(Sine/WsFactor)*Vec.Z)*CF.A((M.R(0+55*M.S(Sine/WsFactor))+M.R(0-15*M.C(Sine/WsFactor)))*Vec.Z,M.R(2),M.R(-2))*CF.A(0,0,(M.R(0+45*M.S(Sine/WsFactor))+M.R(0-15*M.C(Sine/WsFactor)))*Vec.X),Alpha,'Lerp')
+Animate('RH',CF.N(.5-.8*M.S(Sine/WsFactor)*Vec.X,-1.8-.3*M.C(Sine/WsFactor),-.1+1.25*M.S(Sine/WsFactor)*Vec.Z)*CF.A((M.R(0-55*M.S(Sine/WsFactor))+M.R(0+15*M.C(Sine/WsFactor)))*Vec.Z,M.R(-2),M.R(2))*CF.A(0,0,(M.R(0-45*M.S(Sine/WsFactor))+M.R(0+15*M.C(Sine/WsFactor)))*Vec.X),Alpha,'Lerp')]]--
+elseif(State == 'Jump')then
+local idk = math.min(math.max(Root.Velocity.Y/75,-M.R(45)),M.R(45))
+Animate('LS',Joints.LS.D.C0*CF.A(M.R(-5),0,M.R(-15)),.2,'Lerp')
+Animate('RS',Joints.RS.D.C0*CF.A(M.R(-5),0,M.R(15)),.2,'Lerp')
+Animate('RJ',Joints.RJ.D.C0*CF.A(math.min(math.max(Root.Velocity.Y/100,-M.R(45)),M.R(45)),0,0),.2,'Lerp')
+Animate('NK',Joints.NK.D.C0*CF.A(math.min(math.max(Root.Velocity.Y/100,-M.R(45)),M.R(45)),0,0),.2,'Lerp')
+Animate('LH',Joints.LH.D.C0*CF.A(0,0,M.R(-5)),.2,'Lerp')
+Animate('RH',Joints.RH.D.C0*CF.N(0,1,-1)*CF.A(M.R(-5),0,M.R(5)),.2,'Lerp')
+elseif(State == 'Fall')then
+local idk = math.min(math.max(Root.Velocity.Y/75,-M.R(45)),M.R(45))
+Animate('LS',Joints.LS.D.C0*CF.A(M.R(-5),0,M.R(-45)+idk),.2,'Lerp')
+Animate('RS',Joints.RS.D.C0*CF.A(M.R(-5),0,M.R(45)-idk),.2,'Lerp')
+
+Animate('RJ',Joints.RJ.D.C0*CF.A(math.min(math.max(Root.Velocity.Y/100,-M.R(45)),M.R(45)),0,0),.2,'Lerp')
+Animate('NK',Joints.NK.D.C0*CF.A(math.min(math.max(Root.Velocity.Y/100,-M.R(45)),M.R(45)),0,0),.2,'Lerp')
+
+Animate('LH',Joints.LH.D.C0*CF.A(0,0,M.R(-5)),.2,'Lerp')
+Animate('RH',Joints.RH.D.C0*CF.N(0,1,-1)*CF.A(M.R(-5),0,M.R(5)),.2,'Lerp')
+end
+end
+end	
+
+fwait()
+end
 end)
 spawn(function()
 	local PC=PL.Character
@@ -648,7 +874,7 @@ spawn(function()
 		end
 		else if PC:FindFirstChild'Robloxclassicred'then PC.Robloxclassicred:Destroy()end
 		end
-		PC.Parent=script
+		PC.Parent=workspace
 		if PC:FindFirstChildOfClass("Humanoid")~=nil then Phm=PC:FindFirstChildOfClass("Humanoid")else Phm=Instance.new("Humanoid",PC)Humanoid=Phm Humanoid.Died:connect(refit)end
 		workspace.CurrentCamera.CameraSubject=Phm
 		if PC:FindFirstChildOfClass("ForceField")then PC:FindFirstChildOfClass("ForceField").Visible=false else Instance.new("ForceField",PC)end
@@ -671,29 +897,39 @@ end)
 local Hold={}
 Mouse.KeyDown:connect(function(key)if key=="w"then walkW=true end if key=="s"then walkS=true end if key=="a"then walkA=true end if key=="d"then walkD=true end end)
 Mouse.KeyUp:connect(function(key)Hold[key]=nil if key=="w"then walkW=false end if key=="a"then walkA=false end if key=="s"then walkS=false end if key=="d"then walkD=false end end)
-Mouse.Button1Down:connect(function()
-	if not Active then
+function Slash(actionName,inputState,_inputObject)
+if actionName == "Slash" and inputState == Enum.UserInputState.Begin then
+if not Active then
 	Active=true
 	if Target then if Target:FindFirstChild("Torso")then PC.HumanoidRootPart.CFrame=Target.Torso.CFrame*CFrame.new(0,0,2)elseif Target:FindFirstChild("UpperTorso")then PC.HumanoidRootPart.CFrame=Target.UpperTorso.CFrame*CFrame.new(0,0,-2)end end
-	PlayAnimationFromTable({CFrame.new(0, 0, 0)*CFrame.Angles(0, math.rad(15), 0),
-			CFrame.new(0, 1.5, 0) * CFrame.Angles(0, 0, 0),
-			CFrame.new(1.5,.95,-.5) * CFrame.Angles(math.rad(170), 0, 0),
-			CFrame.new(-1.5, 0, 0) * CFrame.Angles(0, 0, 0),
-			CFrame.new(.5, -2, 0) * CFrame.Angles(0, 0, 0),
-			CFrame.new(-.5, -2, 0) * CFrame.Angles(0, 0, 0),
-	},1,false)
+	Attack = true
+	local Alpha = 1
+Animate('RJ',CF.N(0,0,0) * CF.A(0,M.R(15),0),Alpha,'Lerp')
+Animate('NK',CF.N(0,1.5,0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('RS',CF.N(1.5,.95,-.5) * CF.A(M.R(170),0,0),Alpha,'Lerp')
+Animate('LS',CF.N(-1.5,0,0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('RH',CF.N(.5,-2,0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('LH',CF.N(-.5,-2,0) * CF.A(0,0,0),Alpha,'Lerp')
 	Swing:Play()
 	local hit=GetHitBox()hit.Touched:connect(function(pt)local humanoid=FindHumanoid(pt)if humanoid then humanoid.Health=nil DoRagdoll(humanoid.Parent)SpreadBlood(pt,humanoid)HitS:Play()end end)
 	for i=1,15 do
-	PlayAnimationFromTable({CFrame.new(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1),CFrame.new(0, 1.5, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1),
-	CFrame.new(1.20000076, -1.90734863e-06, -0.4, 0.777145326, -0.255969048, 0.574913085, 0, 0.913544714, 0.406738311, -0.629321277, -0.316094756, 0.709956944)*CFrame.Angles(1.1,0,0),
-	CFrame.new(-1.5, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1),CFrame.new(0.5, -2, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1),CFrame.new(-0.5, -2, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)},.3)
+	Alpha = .3
+	Animate('RJ',CF.N(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1),Alpha,'Lerp')
+Animate('NK',CF.N(0, 1.5, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1),Alpha,'Lerp')
+Animate('RS',CF.N(1.20000076, -1.90734863e-06, -0.4, 0.777145326, -0.255969048, 0.574913085, 0, 0.913544714, 0.406738311, -0.629321277, -0.316094756, 0.709956944) * CF.A(1.1,0,0),Alpha,'Lerp')
+Animate('LS',CF.N(-1.5, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1),Alpha,'Lerp')
+Animate('RH',CF.N(0.5, -2, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1),Alpha,'Lerp')
+Animate('LH',CF.N(-0.5, -2, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1),Alpha,'Lerp')
 	MainWeld.C1=CFrame.new(0,0,-.5)*CFrame.Angles(-.9,0,0)w()
 	end resetmw()
 	ClearHitBox()
 	Active=false
+	Attack = false
 	end
-end)
+end
+end
+CAS:BindAction("Slash",Slash,true,Enum.UserInputType.MouseButton1)
+CAS:SetTitle("Slash","Slash")
 function kill(part)
 	if part:IsA("Humanoid")and tostring(part.Parent)~=PL.Name then part.MaxHealth=nil part.Health=nil DoRagdoll(part.Parent)part.Name="Murdered"end
 	local c=part:GetChildren()for i=1,#c do kill(c[i])end
@@ -702,43 +938,42 @@ Mouse.KeyDown:connect(function(ky)
 	Hold[ky]=true
 	if not Active then
 		if ky=="t"and Mouse.Target and not inv then
-			efp:Emit(200)w(2)
-			RootPart.CFrame=Mouse.Hit+Vector3.new(0,3,0)efp:Emit(200)
+			efp:Emit(100)w(2)
+			RootPart.CFrame=Mouse.Hit+Vector3.new(0,3,0)efp:Emit(100)
 		elseif ky=="q"then
 			local obj=Mouse.Target
 			if obj then
-				if obj.Anchored then
-					warn'The Object is anchored!'return
-				else
-					local jet=Instance.new("BodyPosition",obj)
+				local velocity = 30
 					while Hold.q and w()do
-					jet.MaxForce=Vector3.new(10,10,10)*10000000
-					if Mouse.Target then jet.Position=Mouse.Hit.p end
-					end jet:Destroy()
+					local v31 = task.wait()
+	local v32 = CFrame.lookAt(obj.Position, Mouse.Hit.Position - RootPart.Velocity).LookVector
+	local v33 = (obj.Position - Mouse.Hit.Position).Magnitude
+	local v34 = v33 / 50
+	local v35 = math.clamp(v34, 0, 1)
+					obj.CFrame = CFrame.new(obj.Position + v32 * velocity * v31)
+					end
 				end
-			end
 		elseif ky=="f"then 
 			while w()and Hold.f do
 				local was=inv
-				if not Active and not Hold.q then inv=true else inv=false end
+				if not Active and not Hold.q then inv=true refit() else inv=false refit() end
 				if inv~=was then efp:Emit(50)end
-			end inv=false efp:Emit(50)
+			end inv=false efp:Emit(50) refit()
 		end
 	end
 end)
 Humanoid.died:connect(function()script.Disabled=true script:Remove()end)
 --Intros!!!
 --
-Active=1 RootPart.Anchored=1
+Active=true RootPart.Anchored=1
 Humanoid.WalkSpeed=0 w(1)StatModel.Parent=PC
-PlayAnimationFromTable({
-			CFrame.new(0, -512, 0) * CFrame.Angles(0, 0, 0),
-			CFrame.new(0, 0, 0) * CFrame.Angles(0, 0, 0),
-			CFrame.new(1.5, 0, 0) * CFrame.Angles(0, 0, 0),
-			CFrame.new(-1.5, 0, 0) * CFrame.Angles(0, 0, 0),
-			CFrame.new(.5, -2, 0) * CFrame.Angles(0, 0, 0),
-			CFrame.new(-.5, -2, 0) * CFrame.Angles(0, 0, 0),
-},1,false)
+local Alpha = 1
+Animate('RJ',CF.N(0,-512,0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('NK',CF.N(0,0,0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('RS',CF.N(1.5,0,0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('LS',CF.N(-1.5,0,0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('RH',CF.N(.5,-2,0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('LH',CF.N(-.5,-2,0) * CF.A(0,0,0),Alpha,'Lerp')
 StatPart.CFrame=RootPart.CFrame*CFrame.new(rand(-50,50),0,rand(-50,50))*CFrame.Angles(0,math.rad(rand(360)),0)
 StatPart.Anchored=1 RootPart.CFrame=StatPart.CFrame StatModel.Parent=nil
 local clockt=game:service'Lighting'.ClockTime
@@ -748,28 +983,30 @@ spawn(function()Instance.new("Shirt",PC).ShirtTemplate="rbxassetid://803858643"
 local f=function(t,id)local m=Instance.new("CharacterMesh",PC)m.BodyPart=t m.MeshId=tostring(id)end
 f("LeftLeg",27111857)f("RightLeg",27111882)f("Torso",27111894)f("RightArm",27111864)f("LeftArm",27111419)
 for i,p in pairs(PC:children())do if p:IsA"BasePart"then p.Color=Color3.new()end end
-local bc=PC:FindFirstChild"Body Colors" or Instance.new("Body Colors",PC)bc.HeadColor3=Color3.new()bc.LeftArmColor3=Color3.new()bc.RightArmColor3=Color3.new()bc.LeftLegColor3=Color3.new()bc.RightLegColor3=Color3.new()
+local bc=PC:FindFirstChild"Body Colors" or Instance.new("BodyColors",PC)bc.HeadColor3=Color3.new()bc.LeftArmColor3=Color3.new()bc.RightArmColor3=Color3.new()bc.LeftLegColor3=Color3.new()bc.RightLegColor3=Color3.new()
 bc.TorsoColor3=Color3.new()spawn(function()
 if PC.Head:FindFirstChild'face'then PC.Head.face:Destroy()end local d=Instance.new("Decal",PC.Head)d.Name="face"d.Face="Front"d.Texture="rbxassetid://875685961"end)
 end)
-w(30)local music=Instance.new("Sound",PC)music.SoundId="rbxassetid://165278252"music.Looped=1 music:Play()music.Volume=1 w(60)
+w(30)local music=Instance.new("Sound",PC)music.SoundId="rbxassetid://101593989848708"music.Pitch = 0.077 music.Looped=1 music:Play()music.Volume=1 music.Name="Spooky" w(60)
 spawn(function()for i=0,1,.05 do game:service'Lighting'.FogColor=Color3.new()game:service'Lighting'.FogEnd=lerp(game:service'Lighting'.FogEnd,100,.333)w()end end)
 local p=Instance.new("ParticleEmitter",StatPart)p.Color=ColorSequence.new(Color3.new(1,.2,.2),Color3.new(1))p.LightEmission=1
 p.LightInfluence=0 p.Lifetime=NumberRange.new(3)p.Rate=50 p.Enabled=1 p.Speed=NumberRange.new(0)p.Acceleration=Vector3.new(0,10,0)
 p.Size=NumberSequence.new(7,3)p.Transparency=NumberSequence.new(0,1)p.Texture="rbxassetid://111217618"
 for i=1,500,3 do p.Rate=i w()end w(30)
 spawn(function()p.Lifetime=NumberRange.new(2,5)StatPart.Transparency=1 p.Acceleration=Vector3.new()StatPart.CanCollide=nil StatPart.Anchored=1 local pos=StatPart.CFrame StatPart.Size=Vector3.new()
-StatModel:Remove()StatPart.Parent=workspace p.Parent=StatPart StatPart.CFrame=pos p.Enabled=nil p.SpreadAngle=Vector2.new(360,360)p.Speed=NumberRange.new(1,15)w(10)p:Emit(2000)
+StatModel:Remove()StatPart.Parent=workspace p.Parent=StatPart StatPart.CFrame=pos p.Enabled=nil p.SpreadAngle=Vector2.new(360,360)p.Speed=NumberRange.new(1,15)w(10)p:Emit(100)
 end)
-PlayAnimationFromTable({
-			CFrame.new(0, 0, 0) * CFrame.Angles(0, 0, 0),
-			CFrame.new(0, 1.5, 0) * CFrame.Angles(0, 0, 0),
-			CFrame.new(1.5, 0, 0) * CFrame.Angles(0, 0, 0),
-			CFrame.new(-1.5, 0, 0) * CFrame.Angles(0, 0, 0),
-			CFrame.new(.5, -2, 0) * CFrame.Angles(0, 0, 0),
-			CFrame.new(-.5, -2, 0) * CFrame.Angles(0, 0, 0),
-},1,false)Active=nil
-local l=Instance.new("PointLight",RootPart)l.Color=Color3.new(1,0,0)l.Range=15
+Alpha = 1
+Animate('RJ',CF.N(0,0,0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('NK',CF.N(0,1.5,0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('RS',CF.N(1.5,0,0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('LS',CF.N(-1.5,0,0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('RH',CF.N(.5,-2,0) * CF.A(0,0,0),Alpha,'Lerp')
+Animate('LH',CF.N(-.5,-2,0) * CF.A(0,0,0),Alpha,'Lerp')
+Active=false
+NeutralAnims = true
+RootPart.Anchored = false
+local l=Instance.new("PointLight",RootPart)l.Color=Color3.new(1,0,0)l.Range=15 l.Name="Aura"
 spawn(function()
 	local b=Instance.new("BillboardGui",RootPart)b.Size=UDim2.new(66.6666,0,2,0)b.StudsOffsetWorldSpace=Vector3.new(0,5,0)
 	local t=Instance.new("TextLabel",b)t.Text="Guest 666"t.TextStrokeTransparency=0 t.TextColor3=Color3.new(.75)t.TextScaled=1
@@ -781,4 +1018,3 @@ spawn(function()
 		b.StudsOffsetWorldSpace=Vector3.new(math.random(-100,100)/div,5+math.random(-100,100)/div,math.random(-100,100)/div)
 	end
 end)
---]]
