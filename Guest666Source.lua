@@ -35,7 +35,7 @@ LoadLibrary=function(lib)
   end
 script.Name="Guest 666"
 if 1 then
-	local MovesGui=Instance.new("ScreenGui",game:service'Players'.LocalPlayer:FindFirstChildOfClass("PlayerGui"))
+	local MovesGui=Instance.new("ScreenGui",owner:FindFirstChildOfClass("PlayerGui"))
 	local Frm=Instance.new("Frame",MovesGui)Frm.BackgroundColor3=Color3.new()Frm.BorderSizePixel=0
 	Frm.BackgroundTransparency=.5 Frm.Size=UDim2.new(.3,0,.5,0)local Show=true Frm.Position=UDim2.new(.7,0,.5,0)
 	local idk=Instance.new("TextButton",Frm)idk.Size=UDim2.new(.5,0,.1,0)idk.Position=UDim2.new(-.5,0,.8,0)
@@ -373,7 +373,7 @@ StatModel.Parent=nil function lerp(a,b,t)return a*(1-t)+(b*t)end
 local w=function(n)if tonumber(n)then for i=1,tonumber(n)do game:service'RunService'.RenderStepped:wait()end else game:service'RunService'.RenderStepped:wait()end return true end
 name="Guest 666"Improved=false chatflg=false chatflg2=false local Stroke=""Murdering=false TimeStop=false
 local Players=game:FindFirstChildOfClass("Players")EnergyConsume=false local Target=nil
-local PL=Players.LocalPlayer local PG=PL:FindFirstChildOfClass("PlayerGui")
+local PL=owner local PG=PL:FindFirstChildOfClass("PlayerGui")
 local PC=PL.Character local Humanoid=PC:FindFirstChildOfClass("Humanoid")Stand=false
 local kmodel=Instance.new("Model",PC)Mouse=PL:GetMouse()Active=false
 main=Instance.new("Part",kmodel)main.CanCollide=nil main.Size=Vector3.new()local m=Instance.new('FileMesh',main)m.MeshId="rbxassetid://121944778"m.TextureId="rbxassetid://121944805"
@@ -455,7 +455,7 @@ function chatfunc(text)
 spawn(function()local function lerp(a,b,t)return a*(1-t)+(b*t)end 
 	local rs=game:service'RunService'.RenderStepped
 	local function sw(n)if n==nil then rs:wait()else for i=1,n do rs:wait()end end return true end
-	local Character=game:service'Players'.LocalPlayer.Character local RootPart=Character.HumanoidRootPart
+	local Character=owner.Character local RootPart=Character.HumanoidRootPart
 	if Character:FindFirstChild("cht")then Character.cht:Destroy()end
 	local b=Instance.new("BillboardGui",Character)b.AlwaysOnTop=true b.Adornee=RootPart b.StudsOffsetWorldSpace=Vector3.new(0,4,0)b.Name="cht"
 	local snum=text:len()b.Size=UDim2.new(snum/1.7,0,2,0)
