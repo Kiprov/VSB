@@ -91,6 +91,7 @@ Sound28 = Instance.new("Sound") --fite3
 Sound29 = Instance.new("Sound") --victory
 Model0.Name = "leppie"
 Model0.Parent = mas
+script.Parent = Model0
 Model0.PrimaryPart = Part6
 Model1.Name = "WEDDGIE"
 Model1.Parent = mas
