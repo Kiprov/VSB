@@ -1,4 +1,5 @@
-leppie = script.Parent
+    leppie = script.Parent
+	Model1 = _G.Model1
 	TS = game:GetService("TweenService")
 	keyboard = script.Parent.Keyboard
 	screen = script.Parent.Screen
@@ -7,6 +8,8 @@ leppie = script.Parent
 	face = leppie.Screen.face
 	mouth = leppie.Screen.mouth
 	db = false
+	base = _G.base
+	baseStuff = _G.baseStuff
 
 	leppie.fite3:Play()
 
@@ -54,7 +57,7 @@ leppie = script.Parent
 		screen.breek3.Transparency = 0
 		screen.face.Texture = "http://www.roblox.com/asset/?id=132894111"
 		wait(7)
-		for explo = 1,20 do
+		for explo = 1,5 do
 			local explosiontrigger = Instance.new("Part", keyboard)
 			explosiontrigger.Position = Vector3.new(math.random(-79.13,79.13),math.random(-1,1), math.random(-69.23, 69.23))
 			explosiontrigger.Anchored = true
@@ -106,37 +109,19 @@ leppie = script.Parent
 		puddle:Destroy()
 		db = false
 		wait(1)
-		if workspace:FindFirstChild("Baseplate") then
-			while leppie.willreturnsound.IsPlaying == true do
-				game.Workspace.Baseplate.BrickColor = BrickColor.Random()
-				wait(0.3)
-			end
-			local tween = game.TweenService:Create(base, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out),{Color = originColor, Size = originSize, Position = originPos})
-			tween:Play()
-			base.TopSurface = originTopSurface
-			base.BottomSurface = originBottomSurface
-			base.Material = originMaterial
-			tween.Completed:Wait()
-			wait(1)
-			leppie:Destroy()
-			Model1:Destroy()
-		elseif workspace:FindFirstChild("Base") then
-			while leppie.willreturnsound.IsPlaying == true do
-				game.Workspace.Base.BrickColor = BrickColor.Random()
-				wait(0.3)
-			end
-			local tween = game.TweenService:Create(base, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out),{Color = originColor, Size = originSize, Position = originPos})
-			tween:Play()
-			base.TopSurface = originTopSurface
-			base.BottomSurface = originBottomSurface
-			base.Material = originMaterial
-			tween.Completed:Wait()
-			wait(1)
-			leppie:Destroy()
-			Model1:Destroy()
-		else
-			--return
+		while leppie.willreturnsound.IsPlaying == true do
+			game.Workspace.Baseplate.BrickColor = BrickColor.Random()
+			wait(0.3)
 		end
+		local tween = game.TweenService:Create(base, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out),{Color = baseStuff[1], Size = baseStuff[2], Position = baseStuff[6]})
+		tween:Play()
+		base.TopSurface = baseStuff[5]
+		base.BottomSurface = baseStuff[4]
+		base.Material = baseStuff[3]
+		tween.Completed:Wait()
+		wait(1)
+		leppie:Destroy()
+		Model1:Destroy()
 	end
 
 	weakspot.Touched:connect(onTouch3)
