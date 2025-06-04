@@ -11,7 +11,7 @@ leppie = script.Parent
 	wait(2)
 	leppie.fite2:Play()
 	wait(2)
-	for kek2 = 1,20 do
+	for kek2 = 1,10 do
 		local etecc2 = Instance.new("Part", leppie)
 		etecc2.BrickColor = BrickColor.Random()
 		etecc2.Size = Vector3.new(5.59, 4.4, 4.71)
