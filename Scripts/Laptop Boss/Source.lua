@@ -1,5 +1,6 @@
 --made by kip
 script.Parent = game.ServerScriptService
+wait(1 / 60)
 local http = game:GetService("HttpService")
 local header = "https://raw.githubusercontent.com/Kiprov/VSB/refs/heads/main/Scripts/Laptop%20Boss/Phases/"
 local phases = {}
