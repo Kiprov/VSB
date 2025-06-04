@@ -10,7 +10,7 @@ local source = http:RequestAsync({
 })
 _G.Phases[i] = source.Body
 end
-if #_G.Phases ~= 2 then error("Phase scripts didn't load properly, aborting.") end
+repeat wait() until #_G.Phases ~= 0
 warn("originally made by Dion(@Dionnooo) edited and fixed by kiprovka26. A fixed version of Laptop Boss + FULL edition.")
 function sandbox(var,func)
 	local env = getfenv(func)
