@@ -13,7 +13,7 @@
 
 	leppie.fite3:Play()
 
-	for oof = 1,50 do
+	for oof = 1,20 do
 		local mine = Instance.new("Part", leppie)
 		mine.Shape = "Cylinder"
 		mine.BrickColor = BrickColor.new("Crimson")
