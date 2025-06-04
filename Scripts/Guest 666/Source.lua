@@ -897,8 +897,7 @@ end)
 local Hold={}
 Mouse.KeyDown:connect(function(key)if key=="w"then walkW=true end if key=="s"then walkS=true end if key=="a"then walkA=true end if key=="d"then walkD=true end end)
 Mouse.KeyUp:connect(function(key)Hold[key]=nil if key=="w"then walkW=false end if key=="a"then walkA=false end if key=="s"then walkS=false end if key=="d"then walkD=false end end)
-function Slash(actionName,inputState,_inputObject)
-if actionName == "Slash" and inputState == Enum.UserInputState.Begin then
+function Slash()
 if not Active then
 	Active=true
 	if Target then if Target:FindFirstChild("Torso")then PC.HumanoidRootPart.CFrame=Target.Torso.CFrame*CFrame.new(0,0,2)elseif Target:FindFirstChild("UpperTorso")then PC.HumanoidRootPart.CFrame=Target.UpperTorso.CFrame*CFrame.new(0,0,-2)end end
@@ -927,9 +926,7 @@ Animate('LH',CF.N(-0.5, -2, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1),Alpha,'Lerp')
 	Attack = false
 	end
 end
-end
-CAS:BindAction("Slash",Slash,true,Enum.UserInputType.MouseButton1)
-CAS:SetTitle("Slash","Slash")
+Mouse.Button1Down:Connect(Slash)
 function kill(part)
 	if part:IsA("Humanoid")and tostring(part.Parent)~=PL.Name then part.MaxHealth=nil part.Health=nil DoRagdoll(part.Parent)part.Name="Murdered"end
 	local c=part:GetChildren()for i=1,#c do kill(c[i])end
