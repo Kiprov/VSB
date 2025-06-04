@@ -33,7 +33,7 @@ LoadLibrary=function(lib)
 		return {}
 	end
   end
-script.Parent = workspace script.Name="Guest 666"
+script.Name="Guest 666"
 if 1 then
 	local MovesGui=Instance.new("ScreenGui",owner:FindFirstChildOfClass("PlayerGui"))
 	local Frm=Instance.new("Frame",MovesGui)Frm.BackgroundColor3=Color3.new()Frm.BorderSizePixel=0
