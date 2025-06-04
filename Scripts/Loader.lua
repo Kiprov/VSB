@@ -7,14 +7,14 @@ local converterSource = http:RequestAsync({
 return function(script,parent)
 local scriptName = nil
 if string.find(script," ") then
-scriptName = string.gsub(script," ","%20")
+scriptName = string.gsub(script," ","%%20")
 else
 scriptName = script
 end
 local scriptURL = "https://raw.githubusercontent.com/Kiprov/VSB/refs/heads/main/Scripts/"..scriptName.."/Source.lua"
 local spaceName = nil
 if string.find(script," ") then
-spaceName = string.gsub(scriptName,"%20"," ")
+spaceName = string.gsub(scriptName,"%%20"," ")
 else
 spaceName = scriptName
 end
