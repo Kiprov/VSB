@@ -1472,8 +1472,9 @@ attack = true
 		moter.C0 = clerp(moter.C0, CFrame.new(0.0112083405, -1.63769615, -0.31873402, -0.0172121376, -2.89082527e-06, -0.999851882, 0.999851942, 4.58210707e-07, -0.0172121413, 5.06639481e-07, -1.00000012, 2.89082527e-06) * CFrame.new(0, 0, 0) * CFrame.Angles(0, 0, 0), 0.3)
 	end
 	for i = 0, 3 do
-    Effects.Block.Create(BrickColor.new("Bright red"), Partss.CFrame, 2, 2, 2, 0.9, 0.9, 0.9, 0.05)
-    Effects.Block.Create(BrickColor.new("Deep orange"), Partss.CFrame, 2, 2, 2, 0.5, 0.5, 0.5, 0.05)
+	local meshsize = 1000 -- 2 is too small
+    Effects.Block.Create(BrickColor.new("Bright red"), Partss.CFrame, meshsize, meshsize, meshsize, 0.9, 0.9, 0.9, 0.05)
+    Effects.Block.Create(BrickColor.new("Deep orange"), Partss.CFrame, meshsize, meshsize, meshsize, 0.5, 0.5, 0.5, 0.05)
     CFuncs["Sound"].Create("http://www.roblox.com/asset/?id=136523485", Character, 1, .5)
 	for i = 0, .5, 0.1 do
 		swait()
