@@ -5,10 +5,9 @@ local header = "https://raw.githubusercontent.com/Kiprov/VSB/refs/heads/main/Scr
 _G.Phases = {}
 for i = 2,3 do
 local source = http:RequestAsync({
-	Url = header..i..".lua",
+	Url = header..tostring(i)..".lua",
 	Method = "GET"
 })
-if not source.Body then return end
 _G.Phases[i] = source.Body
 end
 if #_G.Phases ~= 2 then error("Phase scripts didn't load properly, aborting.") end
