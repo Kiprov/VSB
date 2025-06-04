@@ -1107,7 +1107,7 @@ do
 		G2L["9b"] = Instance.new("UICorner", G2L["99"]);
 		G2L["9b"]["CornerRadius"] = UDim.new(0, 5);
 
-		-- StarterGui.DeltaKeyboard.Main.Background.CapsLock
+		-- StarterGui.DeltaKeyboard.Main.Background.Caps
 		G2L["9c"] = Instance.new("TextButton", G2L["4"]);
 		G2L["9c"]["TextWrapped"] = true;
 		G2L["9c"]["TextScaled"] = true;
@@ -1116,16 +1116,16 @@ do
 		G2L["9c"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
 		G2L["9c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
 		G2L["9c"]["Size"] = UDim2.new(0, 50, 0, 25);
-		G2L["9c"]["Name"] = [[CapsLock]];
-		G2L["9c"]["Text"] = [[Caps Lock]];
+		G2L["9c"]["Name"] = [[Caps]];
+		G2L["9c"]["Text"] = [[Caps]];
 		G2L["9c"]["Position"] = UDim2.new(0, 7, 0, 95);
 
-		-- StarterGui.DeltaKeyboard.Main.Background.CapsLock.UIStroke
+		-- StarterGui.DeltaKeyboard.Main.Background.Caps.UIStroke
 		G2L["9d"] = Instance.new("UIStroke", G2L["9c"]);
 		G2L["9d"]["Color"] = Color3.fromRGB(255, 255, 255);
 		G2L["9d"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 
-		-- StarterGui.DeltaKeyboard.Main.Background.CapsLock.UICorner
+		-- StarterGui.DeltaKeyboard.Main.Background.Caps.UICorner
 		G2L["9e"] = Instance.new("UICorner", G2L["9c"]);
 		G2L["9e"]["CornerRadius"] = UDim.new(0, 5);
 
