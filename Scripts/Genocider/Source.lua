@@ -1507,7 +1507,7 @@ Humanoid.WalkSpeed = 8
 		wait(.2)
 		mdmg(ref1, 3)
         CFuncs["Sound"].Create("http://www.roblox.com/asset/?id=192410089", Character, 1.5, .7)		
-		ref1.Position = Mouse.hit.p
+		ref1.Position = Mouse.Hit.Position
 		ref1.CFrame = ref1.CFrame * CFrame.new(math.random(-.5,.5),0,math.random(-.5,.5))
         Effects.Cylinder.Create(BrickColor.new("Deep orange"), ref1.CFrame, .5, 9999, .5, 0.5, 0, 0.5, 0.07)
 	end
