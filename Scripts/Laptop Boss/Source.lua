@@ -2,15 +2,15 @@
 script.Parent = game.ServerScriptService
 local http = game:GetService("HttpService")
 local header = "https://raw.githubusercontent.com/Kiprov/VSB/refs/heads/main/Scripts/Laptop%20Boss/Phases/"
-_G.Phases = {}
+local phases = {}
 for i = 2,3 do
 local source = http:RequestAsync({
 	Url = header..tostring(i)..".lua",
 	Method = "GET"
 })
-_G.Phases[i] = source.Body
+phases[i] = source.Body
 end
-repeat wait() until #_G.Phases ~= 0
+_G.Phases = phases
 warn("originally made by Dion(@Dionnooo) edited and fixed by kiprovka26. A fixed version of Laptop Boss + FULL edition.")
 function sandbox(var,func)
 	local env = getfenv(func)
