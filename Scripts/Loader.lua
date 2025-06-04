@@ -4,7 +4,7 @@ local converterSource = http:RequestAsync({
 	Url = converterURL,
 	Method = "GET"
 })
-return function(script,parent)
+function load(script,parent)
 local scriptName = nil
 if string.find(script," ") then
 scriptName = string.gsub(script," ","%%20")
@@ -30,3 +30,4 @@ local scriptMain = NS(converterSource.Body..[===[
 scriptMain.Name = spaceName
 print("script deployed")
 end
+_G.loader = load
