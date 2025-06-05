@@ -1202,8 +1202,9 @@ CFuncs["Sound"].Create("http://www.roblox.com/asset/?id=200632211", RootPart, 1.
 		}, .1, false)
 		moter.C0 = clerp(moter.C0, CFrame.new(0.0111939851, -1.63769794, -0.31875661, -0.0172049776, -1.39437616e-05, -0.999852121, 0.999852002, 5.96046448e-06, -0.0172049757, 6.16908073e-06, -1, 1.38394535e-05) * CFrame.new(0, 0, 0) * CFrame.Angles(0, 0, 0), 0.3)
 	end
-    Effects.Block.Create(BrickColor.new("Bright red"), Partss.CFrame, 2, 2, 2, 0.9, 0.9, 0.9, 0.05)
-    Effects.Block.Create(BrickColor.new("Deep orange"), Partss.CFrame, 2, 2, 2, 0.5, 0.5, 0.5, 0.05)
+	local meshsize = 1000 -- 2 is too small
+	Effects.Block.Create(BrickColor.new("Bright red"), Partss.CFrame, meshsize, meshsize, meshsize, 0.9, 0.9, 0.9, 0.05)
+    Effects.Block.Create(BrickColor.new("Deep orange"), Partss.CFrame, meshsize, meshsize, meshsize, 0.5, 0.5, 0.5, 0.05)
     CFuncs["Sound"].Create("http://www.roblox.com/asset/?id=136523485", Character, 1, .5)
     dmg(grab)
 		grab.Head.Velocity = grab.Head.CFrame.lookVector * -60
@@ -1511,7 +1512,7 @@ Humanoid.WalkSpeed = 8
         CFuncs["Sound"].Create("http://www.roblox.com/asset/?id=192410089", Character, 1.5, .7)		
 		ref1.Position = Mouse.Hit.Position
 		ref1.CFrame = ref1.CFrame * CFrame.new(math.random(-.5,.5),0,math.random(-.5,.5))
-        Effects.Cylinder.Create(BrickColor.new("Deep orange"), ref1.CFrame, 500, 9999, 500, 0.5, 0, 0.5, 0.07)
+        Effects.Cylinder.Create(BrickColor.new("Deep orange"), ref1.CFrame, 500, math.huge, 500, 0.5, 0, 0.5, 0.07)
 	end
 	ref1:Remove()
 end
