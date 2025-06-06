@@ -1571,5 +1571,5 @@ for i,v in pairs(mas:GetChildren()) do
 end
 mas:Destroy()
 for i,v in pairs(cors) do
-	pcall(v)
+	spawn(v)
 end
