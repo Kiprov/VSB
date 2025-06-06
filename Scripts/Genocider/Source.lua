@@ -1039,7 +1039,7 @@ function attackone()
 		}, .1, false)
 		moter.C0 = clerp(moter.C0, CFrame.new(0.011209704, -1.63770795, -0.318749219, -0.0172089972, -4.19956632e-06, -0.999852002, 0.999852061, 8.99471343e-06, -0.0172089972, 9.06549394e-06, -1.00000012, 4.04558159e-06) * CFrame.new(0, 0, 0) * CFrame.Angles(0, 0, 0), 0.3)
 	end
-	local meshsize = 1000 -- 2 is too small
+	local meshsize = 200 -- 2 is too small
 	Effects.Block.Create(BrickColor.new("Bright red"), Partss.CFrame, meshsize, meshsize, meshsize, 0.9, 0.9, 0.9, 0.05)
     Effects.Block.Create(BrickColor.new("Deep orange"), Partss.CFrame, meshsize, meshsize, meshsize, 0.5, 0.5, 0.5, 0.05)
     CFuncs["Sound"].Create("http://www.roblox.com/asset/?id=136523485", Character, 1, .5)
@@ -1202,7 +1202,7 @@ CFuncs["Sound"].Create("http://www.roblox.com/asset/?id=200632211", RootPart, 1.
 		}, .1, false)
 		moter.C0 = clerp(moter.C0, CFrame.new(0.0111939851, -1.63769794, -0.31875661, -0.0172049776, -1.39437616e-05, -0.999852121, 0.999852002, 5.96046448e-06, -0.0172049757, 6.16908073e-06, -1, 1.38394535e-05) * CFrame.new(0, 0, 0) * CFrame.Angles(0, 0, 0), 0.3)
 	end
-	local meshsize = 1000 -- 2 is too small
+	local meshsize = 200 -- 2 is too small
 	Effects.Block.Create(BrickColor.new("Bright red"), Partss.CFrame, meshsize, meshsize, meshsize, 0.9, 0.9, 0.9, 0.05)
     Effects.Block.Create(BrickColor.new("Deep orange"), Partss.CFrame, meshsize, meshsize, meshsize, 0.5, 0.5, 0.5, 0.05)
     CFuncs["Sound"].Create("http://www.roblox.com/asset/?id=136523485", Character, 1, .5)
@@ -1474,7 +1474,7 @@ attack = true
 		moter.C0 = clerp(moter.C0, CFrame.new(0.0112083405, -1.63769615, -0.31873402, -0.0172121376, -2.89082527e-06, -0.999851882, 0.999851942, 4.58210707e-07, -0.0172121413, 5.06639481e-07, -1.00000012, 2.89082527e-06) * CFrame.new(0, 0, 0) * CFrame.Angles(0, 0, 0), 0.3)
 	end
 	for i = 0, 3 do
-	local meshsize = 1000 -- 2 is too small
+	local meshsize = 200 -- 2 is too small
     Effects.Block.Create(BrickColor.new("Bright red"), Partss.CFrame, meshsize, meshsize, meshsize, 0.9, 0.9, 0.9, 0.05)
     Effects.Block.Create(BrickColor.new("Deep orange"), Partss.CFrame, meshsize, meshsize, meshsize, 0.5, 0.5, 0.5, 0.05)
     CFuncs["Sound"].Create("http://www.roblox.com/asset/?id=136523485", Character, 1, .5)
@@ -1512,7 +1512,7 @@ Humanoid.WalkSpeed = 8
         CFuncs["Sound"].Create("http://www.roblox.com/asset/?id=192410089", Character, 1.5, .7)		
 		ref1.Position = Mouse.Hit.Position
 		ref1.CFrame = ref1.CFrame * CFrame.new(math.random(-.5,.5),0,math.random(-.5,.5))
-        Effects.Cylinder.Create(BrickColor.new("Deep orange"), ref1.CFrame, 500, 9223372036854775807, 500, 0.5, 0, 0.5, 0.07)
+        Effects.Cylinder.Create(BrickColor.new("Deep orange"), ref1.CFrame, 500, 1000000000, 500, 0.5, 0, 0.5, 0.07)
 	end
 	ref1:Remove()
 end
