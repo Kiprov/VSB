@@ -1231,7 +1231,7 @@ table.insert(cors,sandbox(Script14,function()
 		screen.face.Texture = "http://www.roblox.com/asset/?id=596786919"
 		leppie.Script.Enabled = false
 		local phase2 = NS(_G.Phases[2],leppie)
-		phase2.Name = "Phase2
+		phase2.Name = "Phase2"
 		db = false
 	end
 
