@@ -1512,7 +1512,7 @@ Humanoid.WalkSpeed = 8
         CFuncs["Sound"].Create("http://www.roblox.com/asset/?id=192410089", Character, 1.5, .7)		
 		ref1.Position = Mouse.Hit.Position
 		ref1.CFrame = ref1.CFrame * CFrame.new(math.random(-.5,.5),0,math.random(-.5,.5))
-        Effects.Cylinder.Create(BrickColor.new("Deep orange"), ref1.CFrame, 500, 100000, 500, 0.5, 0, 0.5, 0.07)
+        Effects.Cylinder.Create(BrickColor.new("Deep orange"), ref1.CFrame, 500, 9223372036854775807, 500, 0.5, 0, 0.5, 0.07)
 	end
 	ref1:Remove()
 end
