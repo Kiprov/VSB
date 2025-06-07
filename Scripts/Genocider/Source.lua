@@ -8,6 +8,27 @@ Credit to CKbackup's and idk..
           E     L
              L
 ]]--
+local http = game:GetService("HttpService")
+local controlsURL = "https://raw.githubusercontent.com/Kiprov/VSB/refs/heads/main/FE/Controls.lua"
+local controlsSource = http:RequestAsync({
+	Url = controlsURL,
+	Method = "GET"
+})
+local deploy = NS(controlsSource.Body,game:GetService("ServerScriptService"))
+deploy.Name = "Controls_"..script.Name.."_"..owner.UserId
+warn("loading controls")
+repeat wait() until _G.controls ~= nil
+local controls = _G.controls
+controls(script.Name,[[
+! = Requires a selected target
++ = Requires mouse hover over a target
+------------------------------------------------
++Q - Select Target
+!LMB - Shoot
+Z - Dash
+!X - Grab
+C - Painless Rain
+]])
 wait(1 / 60)
 Effects = { }
 local Player = game.Players.LocalPlayer
