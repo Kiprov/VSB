@@ -2,10 +2,12 @@ function c(scriptName,moveset)
     local scriptName = scriptName or ""
     local moveset = moveset or ""
     local separator = string.rep("-",string.len(scriptName))
-    local desc = scriptName..separator..[[
-    CONTROLS:
+    local desc = [[     ]]..scriptName..[[
     
-    ]]..moveset
+]]..separator..[[
+CONTROLS:
+   
+]]..moveset
     local MovesGui=Instance.new("ScreenGui",owner:FindFirstChildOfClass("PlayerGui"))
 	local Frm=Instance.new("Frame",MovesGui)
     Frm.BackgroundColor3=Color3.new()
