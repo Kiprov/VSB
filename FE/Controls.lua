@@ -1,4 +1,4 @@
-return function(scriptName,moveset)
+function c(scriptName,moveset)
     local scriptName = scriptName or ""
     local moveset = moveset or ""
     local separator = string.rep("-",string.len(scriptName))
@@ -41,3 +41,4 @@ return function(scriptName,moveset)
     end)
     print("creates controls gui.")
 end
+_G.controls = c
