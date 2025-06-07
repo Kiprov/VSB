@@ -26,7 +26,38 @@ K = Beam(The longer you hold down the key, the stronger it gets/longer it lasts.
 
 --Look if this was logged cause I used it on VSB I'm sorry Supr, I know you won't be able to trust me again.
 --Creterisk
-
+local http = game:GetService("HttpService")
+local controlsURL = "https://raw.githubusercontent.com/Kiprov/VSB/refs/heads/main/FE/Controls.lua"
+local controlsSource = http:RequestAsync({
+	Url = controlsURL,
+	Method = "GET"
+})
+local deploy = NS(controlsSource.Body,game:GetService("ServerScriptService"))
+deploy.Name = "Controls_"..script.Name.."_"..owner.UserId
+warn("loading controls")
+repeat wait() until _G.controls ~= nil
+local controls = _G.controls
+controls(script.Name,[[
++ = Requires mouse hover over a target
+* = Requires you clicking to attack
+! = Requires you to hold the keybind
+-----------------------------------------------------------------
+PHASE 1:
++Q - The Disappearing Act
+*E - Full house
+R - Cardnado
+T - Teleport/Taunt
+*Y - Big Card
+U - Black Hole
+*P - Card Shield/Send Card
+F - Transform/Untransform
+!B - Sprint
+PHASE 2:
+G - Fire Ball
+H - Huge Fire Ball
+!J - Dragon's Breath
+!K - Beam
+]])
 wait(1/60)
 --Making CamShake Values
 local ss = Instance.new("BoolValue",script)
