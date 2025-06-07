@@ -30,6 +30,7 @@ end
 cors = {}
 mas = Instance.new("Model",game:GetService("Lighting"))
 Model0 = Instance.new("Model")
+script.Parent = Model0
 Part1 = Instance.new("Part")
 Decal2 = Instance.new("Decal")
 Decal3 = Instance.new("Decal")
