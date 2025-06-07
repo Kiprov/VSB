@@ -3,7 +3,7 @@
 Q = The reverse penance stare,
 E = Doom Pillars
 T = Unleashed evil ball
-Y = The hunt is on
+R = The hunt is on
 Z = CRAZY XESTER SWITCH!!!
 X = Re_*101011Dact/^ed.exe
 ---------]]
@@ -12,7 +12,27 @@ X = Re_*101011Dact/^ed.exe
 --Also stop calling this void boss v2, void boss switcher or any other name you come up with.--
 --I'm not proud of this project however, having a script this powerful is uncreative and boring + that's what skids care about anyway.--
 --Alright enjoy it guys please do not abuse the shit out of this.--
-
+local http = game:GetService("HttpService")
+local controlsURL = "https://raw.githubusercontent.com/Kiprov/VSB/refs/heads/main/FE/Controls.lua"
+local controlsSource = http:RequestAsync({
+	Url = controlsURL,
+	Method = "GET"
+})
+local deploy = NS(controlsSource.Body,game:GetService("ServerScriptService"))
+deploy.Name = "Controls_"..script.Name.."_"..owner.UserId
+warn("loading controls")
+repeat wait() until _G.controls ~= nil
+local controls = _G.controls
+controls(script.Name,[[
++ = Requires mouse hover over a target
+-----------------------------------------------------------------
++Q - The reverse penance stare
+E - Doom Pillars
+T - Unleashed Evil Ball/Taunt
++R - Hunt
+Z - Crazy Xester Switch
+X - Re_*101011Dact/^ed.exe
+]])
 Player=game:GetService("Players").LocalPlayer
 Character=Player.Character
 Character.Humanoid.Name = "vereus"
