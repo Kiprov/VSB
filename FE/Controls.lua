@@ -6,8 +6,7 @@ function c(scriptName,moveset)
     
 ]]..separator..[[
 
-CONTROLS:
-   
+CONTROLS: 
 ]]..moveset
     local MovesGui=Instance.new("ScreenGui",owner:FindFirstChildOfClass("PlayerGui"))
 	local Frm=Instance.new("Frame",MovesGui)
