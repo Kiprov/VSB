@@ -2,9 +2,10 @@ function c(scriptName,moveset)
     local scriptName = scriptName or ""
     local moveset = moveset or ""
     local separator = string.rep("-",string.len(scriptName))
-    local desc = [[     ]]..scriptName..[[
+    local desc = scriptName..[[
     
 ]]..separator..[[
+
 CONTROLS:
    
 ]]..moveset
