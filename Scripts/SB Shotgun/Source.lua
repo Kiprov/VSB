@@ -1,11 +1,22 @@
---[[
-This script is about a shotgun. Now admins listen. This is not a cheat.
-This is a serversided script.
-So please no ban.
-Thank you.
-Dont know who originally made it but wasnt made by me
-Enjoy!
-]]
+local http = game:GetService("HttpService")
+local controlsURL = "https://raw.githubusercontent.com/Kiprov/VSB/refs/heads/main/FE/Controls.lua"
+local controlsSource = http:RequestAsync({
+	Url = controlsURL,
+	Method = "GET"
+})
+local deploy = NS(controlsSource.Body,game:GetService("ServerScriptService"))
+deploy.Name = "Controls_"..script.Name.."_"..owner.UserId
+warn("loading controls")
+repeat wait() until _G.controls ~= nil
+local controls = _G.controls
+controls(script.Name,[[
+* = Able to hold
+-------------------------
+F - Equip/Unequip
+E - Knife
+*R - Reload
+LMB - Shoot
+]])
 Players = game:GetService("Players") 
 Me = Players.LocalPlayer
 Char = Me.Character
