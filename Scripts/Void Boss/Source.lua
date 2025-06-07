@@ -1,3 +1,23 @@
+local http = game:GetService("HttpService")
+local controlsURL = "https://raw.githubusercontent.com/Kiprov/VSB/refs/heads/main/FE/Controls.lua"
+local controlsSource = http:RequestAsync({
+	Url = controlsURL,
+	Method = "GET"
+})
+local deploy = NS(controlsSource.Body,game:GetService("ServerScriptService"))
+deploy.Name = "Controls_"..script.Name.."_"..owner.UserId
+warn("loading controls")
+repeat wait() until _G.controls ~= nil
+local controls = _G.controls
+controls(script.Name,[[
+* = Stronger Attacks in Phase 2
+----------------------------------------------------
+*Z - Darkified Explosion
+*X - Pit of Darkness
+*C - Pitiful Grab
+*V - Catastrophic Pillars
+P - Phase 2/Phase 1
+]])
 local TweenService = game:GetService("TweenService")
 local RbxUtility = LoadLibrary("RbxUtility")
 local Create = RbxUtility.Create
