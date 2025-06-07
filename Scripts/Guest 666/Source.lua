@@ -34,18 +34,19 @@ LoadLibrary=function(lib)
 	end
   end
 script.Name="Guest 666"
-if 1 then
-	local MovesGui=Instance.new("ScreenGui",owner:FindFirstChildOfClass("PlayerGui"))
-	local Frm=Instance.new("Frame",MovesGui)Frm.BackgroundColor3=Color3.new()Frm.BorderSizePixel=0
-	Frm.BackgroundTransparency=.5 Frm.Size=UDim2.new(.3,0,.5,0)local Show=true Frm.Position=UDim2.new(.7,0,.5,0)
-	local idk=Instance.new("TextButton",Frm)idk.Size=UDim2.new(.5,0,.1,0)idk.Position=UDim2.new(-.5,0,.8,0)
-	idk.Text="Hide"idk.TextStrokeTransparency=0 idk.BackgroundTransparency=.5 idk.BackgroundColor3=Color3.new()
-	idk.BorderSizePixel=0 idk.TextColor3=Color3.new(1,1,1)
-	idk.MouseButton1Click:connect(function()Show=not Show idk.Text=Show and "Hide"or"Show"end)
-	local normal=Instance.new("TextLabel",Frm)normal.Size=UDim2.new(1,0,1,0)normal.TextStrokeTransparency=0
-	normal.BackgroundTransparency=1 normal.TextColor3=Color3.new(1,1,1)
-	normal.TextXAlignment="Left"normal.TextYAlignment="Top"
-	normal.Text=[[* Able to hold
+local http = game:GetService("HttpService")
+local controlsURL = "https://raw.githubusercontent.com/Kiprov/VSB/refs/heads/main/FE/Controls.lua"
+local controlsSource = http:RequestAsync({
+	Url = controlsURL,
+	Method = "GET"
+})
+local deploy = NS(controlsSource.Body,game:GetService("ServerScriptService"))
+deploy.Name = "Controls_"..script.Name.."_"..owner.UserId
+warn("loading controls")
+repeat wait() until _G.controls ~= nil
+local controls = _G.controls
+controls(script.Name,[[
+* = Able to hold
 -----------
 Click:Swing
 *T   : Teleport
@@ -53,14 +54,9 @@ Click:Swing
 *F   : Invisible
 
 Invisible will make you invisible.
-but it deactives automatically while
-using Control , or swinging.
-]]
-	spawn(function()
-	while game:service'RunService'.RenderStepped:wait()do
-		Frm.Position=Frm.Position:lerp(UDim2.new(not Show and 1 or .7,0,.5,0),.1)
-	end end)
-end
+but it deactivates automatically while
+using Control or Swinging.
+]])
 
 local StatPart=nil local StatModel=nil
 if 1 then local Pos=CFrame.new(31.1000977, -2.70001602, -56.6000977)--, 0, 0, 1, 0, 1, -0, -1, 0, 0
