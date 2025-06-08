@@ -111,6 +111,8 @@ wait()
 
 Humanoid.Health = math.huge
 Humanoid.Name = "VoidBoss"
+Humanoid.JumpPower = 90	
+Humanoid.WalkSpeed=16
 ff = Instance.new("ForceField",Character)
 ff.Visible = false
 playsong = true
@@ -3689,7 +3691,7 @@ CurId = CurId + 0.5
 		wait(.5)	
 		attack = false
 	else
-	lastid = "http://www.roblox.com/asset/?id=1836818363"
+	lastid = "http://www.roblox.com/asset/?id=124652184463749"
 	attack = true
 	mememode=false
 
