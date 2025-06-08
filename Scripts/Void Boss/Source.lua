@@ -87,10 +87,11 @@ ASIN = math.asin
 ABS = math.abs
 MRANDOM = math.random
 FLOOR = math.floor
-local lastid= "http://www.roblox.com/asset/?id=1836818363"
+local lastid= "http://www.roblox.com/asset/?id=124652184463749"
 local s2=it("Sound",Torso)
 local CurId = 1
 s2.EmitterSize = 30
+s2.Pitch = .05
 local s2c=s2:Clone()
 
 
@@ -3873,7 +3874,7 @@ coroutine.resume(coroutine.create(function()
 
 				if mememode == false then
 
-					s2.Pitch = .85
+					s2.Pitch = .05
 
 					s2.Volume = 1.5
 					
