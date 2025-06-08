@@ -2139,7 +2139,7 @@ mouse.KeyDown:connect(function(Press)
 		if levitate then
 			levitate = false
 			mjester.VertexColor = Vector3.new(1, 1, 1)
-			glow.Transparency = 0
+			glow.Transparency = 1
 			blastwave = Instance.new("Part",Torso)
 			blastwave.CFrame = Torso.CFrame
 			blastwave.Anchored = true
@@ -2235,7 +2235,7 @@ mouse.KeyDown:connect(function(Press)
 			notallowedtransform = true
 			levitate = true
 			ws = 50
-			glow.Transparency = 1
+			glow.Transparency = 0
 			eyo1:Remove()
 			eyo2:Remove()
 			coroutine.wrap(function()
