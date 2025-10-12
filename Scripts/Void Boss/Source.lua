@@ -3749,6 +3749,8 @@ KeyUpF=function(key)
 
 end
 
+Mouse.Button1Down:Connect(Button1DownF)
+
 Mouse.KeyDown:Connect(function(key)
 	key:lower()	
 	if key == "z" and attack ==false then
