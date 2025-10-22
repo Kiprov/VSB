@@ -974,20 +974,22 @@ table.insert(cors,sandbox(Script14,function()
     local soundScape = service("SoundService")
     local emitter = ffc(soundScape,"TTS_Emitter") or IT("AudioDeviceOutput",soundScape)
     emitter.Name = "TTS_Emitter"
-    function createTTS(msg,voiceId)
+    local emitter2 = ffc(soundScape,"TTS_Emitter2") or IT("AudioDeviceOutput",soundScape)
+    emitter2.Name = "TTS_Emitter2"
+    function createTTS(msg,voiceId,emit)
         local tts = IT("AudioTextToSpeech", workspace)
         tts.Name = "TTS_Register_"..voiceId
         tts.VoiceId = voiceId
         tts.Text = msg
         local wire = IT("Wire",tts)
         wire.SourceInstance = tts
-        wire.TargetInstance = emitter
+        wire.TargetInstance = emit
         return tts
     end
     function tooterals()
         -- Softonic now available on your PC.
-        local tf = createTTS("Softonic now available on your PC.", "8")
-        local t = createTTS("NO!", "9")
+        local tf = createTTS("Softonic now available on your PC.", "8",emitter)
+        local t = createTTS("NO!", "9",emitter2)
         tf:Play()
         tf.Ended:Wait()
         -- NO!
