@@ -964,6 +964,63 @@ table.insert(cors,sandbox(Script14,function()
 		wait()
 	end
 	_G.static = static
+    function service(serviceName)
+        return game:GetService(serviceName)
+    end
+    function ffc(s,i)
+        return s:FindFirstChild(i)
+    end
+    local IT = Instance.new
+    local soundScape = service("SoundService")
+    local emitter = ffc(soundScape,"TTS_Emitter") or IT("AudioDeviceOutput",soundScape)
+    emitter.Name = "TTS_Emitter"
+    function createTTS(msg,voiceId)
+        local tts = IT("AudioTextToSpeech", workspace)
+        tts.Name = "TTS_Register"
+        tts.VoiceId = voiceId
+        tts.Text = msg
+        local wire = IT("Wire",tts)
+        wire.SourceInstance = tts
+        wire.TargetInstance = emitter
+        tts.Ended:Connect(function()
+             tts:Destroy()
+        end)
+        return tts
+    end
+    function tooterals()
+        -- Softonic now available on your PC.
+        local t = createTTS("Softonic now available on your PC.", "8")
+        t:Play()
+        t.Ended:Wait()
+        -- NO!
+        t = createTTS("NO!", "9")
+        t:Play()
+        t.Ended:Wait()
+        -- Let's start using the application.
+        t = createTTS("Let's start using the application.", "8")
+        t:Play()
+        t.Ended:Wait()
+        -- NO!
+        t = createTTS("NO!", "9")
+        t:Play()
+        t.Ended:Wait()
+        -- Do you know what software you are looking for?
+        t = createTTS("Do you know what software you are looking for?", "8")
+        t:Play()
+        t.Ended:Wait()
+        -- NO!
+        t = createTTS("NO!", "9")
+        t:Play()
+        t.Ended:Wait()
+        -- Soft and related of those installed on your PC.
+        t = createTTS("Soft and related of those installed on your PC.", "8")
+        t:Play()
+        t.Ended:Wait()
+        -- I BLAME YOU, YOU DID THIS! YOU DID THIS!
+        t = createTTS("I BLAME YOU, YOU DID THIS! YOU DID THIS!", "9")
+        t:Play()
+        t.Ended:Wait()
+    end
 	function typewrite(text,length,sound,change)
 		local mouthTalking = true
 		local object = Instance.new("Message",leppie)
@@ -1105,7 +1162,7 @@ table.insert(cors,sandbox(Script14,function()
 	eyes.Transparency = 0
 	mouth.Texture = "http://www.roblox.com/asset/?id=377495903"
 	mouth.Transparency = 0
-	leppie.tooterals:Play()
+	spawn(tooterals)
 	wait(3.2)
 	eyes.Texture = "http://www.roblox.com/asset/?id=1136341716"
 	mouth.Texture = "http://www.roblox.com/asset/?id=920432772"
