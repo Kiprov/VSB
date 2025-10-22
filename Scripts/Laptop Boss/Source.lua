@@ -972,55 +972,51 @@ table.insert(cors,sandbox(Script14,function()
     end
     local IT = Instance.new
     local soundScape = service("SoundService")
+    local emitter = ffc(soundScape,"TTS_Emitter") or IT("AudioDeviceOutput",soundScape)
+    emitter.Name = "TTS_Emitter"
     function createTTS(msg,voiceId)
-        local emitter = ffc(soundScape,"TTS_Emitter") or IT("AudioDeviceOutput",soundScape)
-        emitter.Name = "TTS_Emitter"
         local tts = IT("AudioTextToSpeech", workspace)
-        tts.Name = "TTS_Register"
+        tts.Name = "TTS_Register_"..voiceId
         tts.VoiceId = voiceId
         tts.Text = msg
         local wire = IT("Wire",tts)
         wire.SourceInstance = tts
         wire.TargetInstance = emitter
-        tts.Ended:Connect(function()
-             tts:Destroy()
-             emitter:Destroy()
-        end)
         return tts
     end
     function tooterals()
         -- Softonic now available on your PC.
-        local t = createTTS("Softonic now available on your PC.", "8")
+        local tf = createTTS("Softonic now available on your PC.", "8")
+        local t = createTTS("NO!", "9")
+        tf:Play()
+        tf.Ended:Wait()
+        -- NO!
         t:Play()
         t.Ended:Wait()
-        -- NO!
-        local a = createTTS("NO!", "9")
-        a:Play()
-        a.Ended:Wait()
         -- Let's start using the application.
-        local b = createTTS("Let's start using the application.", "8")
-        b:Play()
-        b.Ended:Wait()
+        tf.Text = "Let's start using the application."
+        tf:Play()
+        tf.Ended:Wait()
         -- NO!
-        local c = createTTS("NO!", "9")
-        c:Play()
-        c.Ended:Wait()
+        t:Play()
+        t.Ended:Wait()
         -- Do you know what software you are looking for?
-        local d = createTTS("Do you know what software you are looking for?", "8")
-        d:Play()
-        d.Ended:Wait()
+        tf.Text = "Do you know what software you are looking for?"
+        tf:Play()
+        tf.Ended:Wait()
         -- NO!
-        local e = createTTS("NO!", "9")
-        e:Play()
-        e.Ended:Wait()
+        t:Play()
+        t.Ended:Wait()
         -- Soft and related of those installed on your PC.
-        local f = createTTS("Soft and related of those installed on your PC.", "8")
-        f:Play()
-        f.Ended:Wait()
+        tf.Text = "Soft and related of those installed on your PC."
+        tf:Play()
+        tf.Ended:Wait()
         -- I BLAME YOU, YOU DID THIS! YOU DID THIS!
-        local g = createTTS("I BLAME YOU, YOU DID THIS! YOU DID THIS!", "9")
-        g:Play()
-        g.Ended:Wait()
+        t.Text = "I BLAME YOU, YOU DID THIS! YOU DID THIS!"
+        t:Play()
+        t.Ended:Wait()
+        tf:Destroy()
+        t:Destroy()
     end
 	function typewrite(text,length,sound,change)
 		local mouthTalking = true
