@@ -976,7 +976,7 @@ table.insert(cors,sandbox(Script14,function()
     emitter.Name = "TTS_Emitter"
     function createTTS(msg,voiceId)
         local tts = IT("AudioTextToSpeech", workspace)
-        tts.Name = "TTS_Register"
+        tts.Name = "TTS_Register_"..voiceId+math.random(1,2)
         tts.VoiceId = voiceId
         tts.Text = msg
         local wire = IT("Wire",tts)
