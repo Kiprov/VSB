@@ -972,9 +972,9 @@ table.insert(cors,sandbox(Script14,function()
     end
     local IT = Instance.new
     local soundScape = service("SoundService")
-    local emitter = ffc(soundScape,"TTS_Emitter") or IT("AudioDeviceOutput",soundScape)
-    emitter.Name = "TTS_Emitter"
     function createTTS(msg,voiceId)
+        local emitter = ffc(soundScape,"TTS_Emitter") or IT("AudioDeviceOutput",soundScape)
+        emitter.Name = "TTS_Emitter"
         local tts = IT("AudioTextToSpeech", workspace)
         tts.Name = "TTS_Register"
         tts.VoiceId = voiceId
@@ -983,10 +983,8 @@ table.insert(cors,sandbox(Script14,function()
         wire.SourceInstance = tts
         wire.TargetInstance = emitter
         tts.Ended:Connect(function()
-             tts:Stop()
-             tts.Name = "UNAVAILABLE"
-             tts.Parent = service("ServerScriptService")
              tts:Destroy()
+             emitter:Destroy()
         end)
         return tts
     end
