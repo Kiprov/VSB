@@ -1170,7 +1170,7 @@ table.insert(cors,sandbox(Script14,function()
 	mouth.Transparency = 0
 	leppie.tooterals:Play()
 	spawn(tooterals)
-	wait(2.5)
+	wait(3.2)
 	eyes.Texture = "http://www.roblox.com/asset/?id=1136341716"
 	mouth.Texture = "http://www.roblox.com/asset/?id=920432772"
 	wait(0.1)
@@ -1339,7 +1339,7 @@ Sound22.Volume = 3
 Sound23.Name = "tooterals"
 Sound23.Parent = Model0
 Sound23.SoundId = "rbxassetid://131533591074605"
-Sound23.Volume = 3
+Sound23.Volume = 1
 Sound24.Name = "fite1"
 Sound24.Parent = Model0
 Sound24.Looped = true
