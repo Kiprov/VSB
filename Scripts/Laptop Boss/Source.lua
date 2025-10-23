@@ -978,7 +978,7 @@ table.insert(cors,sandbox(Script14,function()
         local tts = IT("AudioTextToSpeech", workspace)
         tts.Name = "TTS_Register_"..voiceId
         tts.VoiceId = voiceId
-        tts.Volume = 3
+        tts.Volume = 10
         tts.Text = msg
         local wire = IT("Wire",tts)
         wire.SourceInstance = tts
