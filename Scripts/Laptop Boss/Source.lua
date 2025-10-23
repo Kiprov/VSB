@@ -1170,7 +1170,7 @@ table.insert(cors,sandbox(Script14,function()
 	mouth.Transparency = 0
 	leppie.tooterals:Play()
 	spawn(tooterals)
-	wait(3.2)
+	wait(2.5)
 	eyes.Texture = "http://www.roblox.com/asset/?id=1136341716"
 	mouth.Texture = "http://www.roblox.com/asset/?id=920432772"
 	wait(0.1)
@@ -1178,7 +1178,7 @@ table.insert(cors,sandbox(Script14,function()
 	wait(0.2)
 	mouth.Texture = "http://www.roblox.com/asset/?id=591848611"
 	eyes.Transparency = 1
-	wait(2)
+	wait(2.2)
 	eyes.Transparency = 0
 	eyes.Texture = "http://www.roblox.com/asset/?id=1136341716"
 	mouth.Texture = "http://www.roblox.com/asset/?id=920432772"
@@ -1186,7 +1186,7 @@ table.insert(cors,sandbox(Script14,function()
 	mouth.Texture = "http://www.roblox.com/asset/?id=920435550"
 	wait(0.1)
 	mouth.Texture = "http://www.roblox.com/asset/?id=920434949"
-	wait(2)
+	wait(2.3)
 	mouth.Texture = "http://www.roblox.com/asset/?id=920432772"
 	wait(0.1)
 	mouth.Texture = "http://www.roblox.com/asset/?id=920435550"
