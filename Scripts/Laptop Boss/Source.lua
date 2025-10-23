@@ -978,6 +978,7 @@ table.insert(cors,sandbox(Script14,function()
         local tts = IT("AudioTextToSpeech", workspace)
         tts.Name = "TTS_Register_"..voiceId
         tts.VoiceId = voiceId
+        tts.Volume = 3
         tts.Text = msg
         local wire = IT("Wire",tts)
         wire.SourceInstance = tts
@@ -1167,6 +1168,7 @@ table.insert(cors,sandbox(Script14,function()
 	eyes.Transparency = 0
 	mouth.Texture = "http://www.roblox.com/asset/?id=377495903"
 	mouth.Transparency = 0
+	leppie.tooterals:Play()
 	spawn(tooterals)
 	wait(3.2)
 	eyes.Texture = "http://www.roblox.com/asset/?id=1136341716"
@@ -1336,7 +1338,7 @@ Sound22.SoundId = "rbxassetid://1286168545"
 Sound22.Volume = 3
 Sound23.Name = "tooterals"
 Sound23.Parent = Model0
-Sound23.SoundId = "rbxassetid://4389968391"
+Sound23.SoundId = "rbxassetid://131533591074605"
 Sound23.Volume = 3
 Sound24.Name = "fite1"
 Sound24.Parent = Model0
