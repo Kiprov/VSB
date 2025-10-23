@@ -974,50 +974,56 @@ table.insert(cors,sandbox(Script14,function()
     local soundScape = service("SoundService")
     local emitter = ffc(soundScape,"TTS_Emitter") or IT("AudioDeviceOutput",soundScape)
     emitter.Name = "TTS_Emitter"
-    local emitter2 = ffc(soundScape,"TTS_Emitter2") or IT("AudioDeviceOutput",soundScape)
-    emitter2.Name = "TTS_Emitter2"
-    function createTTS(msg,voiceId,emit)
+    function createTTS(msg,voiceId)
         local tts = IT("AudioTextToSpeech", workspace)
         tts.Name = "TTS_Register_"..voiceId
         tts.VoiceId = voiceId
         tts.Text = msg
         local wire = IT("Wire",tts)
         wire.SourceInstance = tts
-        wire.TargetInstance = emit
+        wire.TargetInstance = emitter
         return tts
     end
     function tooterals()
         -- Softonic now available on your PC.
-        local tf = createTTS("Softonic now available on your PC.", "8",emitter)
-        local t = createTTS("NO!", "9",emitter2)
+        local tf = createTTS("Softonic now available on your PC.", "8")
+        local t = createTTS("NO!", "9")
         tf:Play()
-        tf.Ended:Wait()
+        wait(2.5)
         -- NO!
-        t:Play()
-        t.Ended:Wait()
-        -- Let's start using the application.
-        tf.Text = "Let's start using the application."
-        tf:Play()
-        tf.Ended:Wait()
-        -- NO!
-        t:Play()
-        t.Ended:Wait()
-        -- Do you know what software you are looking for?
-        tf.Text = "Do you know what software you are looking for?"
-        tf:Play()
-        tf.Ended:Wait()
-        -- NO!
-        t:Play()
-        t.Ended:Wait()
-        -- Soft and related of those installed on your PC.
-        tf.Text = "Soft and related of those installed on your PC."
-        tf:Play()
-        tf.Ended:Wait()
-        -- I BLAME YOU, YOU DID THIS! YOU DID THIS!
-        t.Text = "I BLAME YOU, YOU DID THIS! YOU DID THIS!"
-        t:Play()
-        t.Ended:Wait()
         tf:Destroy()
+        t:Play()
+        wait(0.5)
+        -- Let's start using the application.
+        t:Destroy()
+        tf = createTTS("Lets start using the application.", "8")
+        tf:Play()
+        wait(2.5)
+        -- NO!
+        tf:Destroy()
+        t = createTTS("NO!", "9")
+        t:Play()
+        wait(0.5)
+        -- Do you know what software you are looking for?
+        t:Destroy()
+        tf = createTTS("Do you know what software you are looking for?", "8")
+        tf:Play()
+        wait(2.5)
+        -- NO!
+        tf:Destroy()
+        t = createTTS("NO!", "9")
+        t:Play()
+        wait(0.5)
+        -- Soft and related of those installed on your PC.
+        t:Destroy()
+        tf = createTTS("Soft and related of those installed on your PC.", "8")
+        tf:Play()
+        wait(3)
+        -- I BLAME YOU, YOU DID THIS! YOU DID THIS!
+        tf:Destroy()
+        t = createTTS("I BLAME YOU, YOU DID THIS! YOU DID THIS!", "9")
+        t:Play()
+        wait(4.5)
         t:Destroy()
     end
 	function typewrite(text,length,sound,change)
