@@ -1184,9 +1184,12 @@ function camerashake(character, times, intensity)
 	times = times or 40
 	intensity = intensity or 7
 	local cameraShakeInstance = NLS([[
+	    local character = script.Parent
 	    local humanoid = character:FindFirstChildOfClass("Humanoid")
-        local times = script.Times.Value
-        local intensity = script.Intensity.Value
+        local times = script:WaitForChild("Times")
+        local intensity = script:WaitForChild("Intensity")
+        times = times.Value
+        intensity = intensity.Value
 
         for i = 1, times do
 	        humanoid.CameraOffset = Vector3.new(math.random(-intensity, intensity), math.random(-intensity, intensity), math.random(-intensity, intensity))
@@ -1195,6 +1198,14 @@ function camerashake(character, times, intensity)
         humanoid.CameraOffset = Vector3.zero
         script:FindFirstChild("RemoteEvent", true):FireServer()
     ]], character)
+    local tim = Instance.new("NumberValue")
+    local int = Instance.new("NumberValue")
+    tim.Name = "Times"
+    int.Name = "Intensity"
+    tim.Value = times
+    int.Value = intensity
+    tim.Parent = cameraShakeInstance
+    int.Parent = cameraShakeInstance
     NS([[
         local remote = Instance.new("RemoteEvent", script)
         remote.OnServerEvent:Once(function()
