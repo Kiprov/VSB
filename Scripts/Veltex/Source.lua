@@ -831,6 +831,8 @@ mouse.KeyDown:connect(function(Press)
 				v:Destroy()
 			end
 		end
+	elseif Press=='n' then
+		doomtheme.Playing = not doomtheme.Playing
 	elseif Press=='p' then
 		if debounce then return end
 		if mouse.Target ~= nil and mouse.Target.Parent ~= Character and mouse.Target.Parent.Parent ~= Character and mouse.Target.Parent:FindFirstChildOfClass("Humanoid") ~= nil then
