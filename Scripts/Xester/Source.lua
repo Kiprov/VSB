@@ -144,6 +144,7 @@ dgs = 75
 combo2 = false
 firsttime3 = false
 combo3 = false
+cardpush = nil
 local bl = {907530553,907527750,907527912}
 colortable = {"Really black","Really red"}
 colors = #colortable
@@ -691,6 +692,15 @@ function SOUND(PARENT,ID,VOL,LOOP,REMOVE)
 	removeuseless:AddItem(so,REMOVE)
 end
 
+function ray(POSITION, DIRECTION, RANGE, IGNOREDECENDANTS)
+	return workspace:FindPartOnRay(Ray.new(POSITION, DIRECTION.unit * RANGE), IGNOREDECENDANTS)
+end
+
+function ray2(StartPos, EndPos, Distance, Ignore)
+	local DIRECTION = CFrame.new(StartPos,EndPos).lookVector
+	return ray(StartPos, DIRECTION, Distance, Ignore)
+end
+
 
 mouse.KeyDown:connect(function(Press)
 	Press=Press:lower()
@@ -819,12 +829,7 @@ mouse.KeyDown:connect(function(Press)
 		attacking = false
 		debounce = false
 		appi = false
-	end
-end)
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='e' then
+	elseif Press=='e' then
 		if levitate then return end
 		if debounce then return end
 		attacking = true
@@ -942,12 +947,14 @@ mouse.KeyDown:connect(function(Press)
 			end
 		end)()
 		coroutine.wrap(function()
-			mouse.Button1Down:connect(function()
+		    local click = nil
+			click = mouse.Button1Down:connect(function()
 				if clickdisallowance then return end
 				if clickdebounce then return end
 				wait(.2)
 				clickdebounce = true
 				notallowed = false
+				click:Disconnect()
 			end)
 		end)()
 		while notallowed do
@@ -1016,12 +1023,7 @@ mouse.KeyDown:connect(function(Press)
 		clickdebounce = false
 		appi = false
 		ws = 10
-	end
-end)
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='y' then
+	elseif Press=='y' then
 		if levitate then return end
 		if debounce then return end
 		clickdisallowance = true
@@ -1118,11 +1120,13 @@ mouse.KeyDown:connect(function(Press)
 		g1.MaxTorque = Vector3.new(0,9000,0)
 		clickdisallowance = false
 		coroutine.wrap(function()
-			mouse.Button1Down:connect(function()
+		    local click = nil
+			click = mouse.Button1Down:connect(function()
 				if clickdisallowance then return end
 				if clickdebounce then return end
 				wait(.2)
 				clickdebounce = true
+				click:Disconnect()
 			end)
 		end)()
 		while not clickdebounce do
@@ -1235,12 +1239,7 @@ mouse.KeyDown:connect(function(Press)
 		ws = 10
 		bigcard:Remove()
 		clean()
-	end
-end)
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='u' then
+	elseif Press=='u' then
 		if levitate then return end
 		if mouse.Target ~= nil then end
 		if debounce then return end
@@ -1563,12 +1562,7 @@ mouse.KeyDown:connect(function(Press)
 		ws = 10
 		attacking = false
 		debounce = false
-	end
-end)
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='t' then
+	elseif Press=='t' then
 		if levitate then
 			if tauntdebounce then return end
 			tauntdebounce = true
@@ -1647,12 +1641,7 @@ mouse.KeyDown:connect(function(Press)
 				debounce = false
 			end
 		end
-	end
-end)
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='q' then
+	elseif Press=='q' then
 		if levitate then return end
 		if mouse.Target ~= nil and mouse.Target.Parent ~= Character and mouse.Target.Parent.Parent ~= Character and mouse.Target.Parent:FindFirstChildOfClass("Humanoid") ~= nil and mouse.Target.Parent:FindFirstChildOfClass("Humanoid").Health ~= 0 then
 			if debounce then return end
@@ -1818,16 +1807,12 @@ mouse.KeyDown:connect(function(Press)
 			debounce = false
 			appi = false
 		end
-	end
-end)
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='p' then
+	elseif Press=='p' then
 		if levitate then return end
 		if blocking then
 			if blockedoff then return end
 			clickallowance = false
+			cardpush:Disconnect()
 			appi = false
 			attacking = true
 			blocking = false
@@ -2073,7 +2058,7 @@ mouse.KeyDown:connect(function(Press)
 				end
 			end)()
 			wait(1)
-			mouse.Button1Down:connect(function()
+			cardpush = mouse.Button1Down:connect(function()
 				if throwing then return end
 				if not clickallowance then return end
 				clickallowance = false
@@ -2087,7 +2072,8 @@ mouse.KeyDown:connect(function(Press)
 				end
 				boosh:Play()
 				hitdebounce = false
-				blockcard.Touched:connect(function(hit)
+				local hitbox = nil
+				hitbox = blockcard.Touched:connect(function(hit)
 					if hit.Parent:IsA("Part") then
 					elseif hit.Parent:IsA("SpecialMesh") then
 					elseif hit.Parent.Name == game.Players.LocalPlayer.Name then
@@ -2120,19 +2106,14 @@ mouse.KeyDown:connect(function(Press)
 					blockcard.CFrame = blockcard.CFrame * CFrame.new(0,0,0+1)
 					swait()
 				end
+				hitbox:Disconnect()
 				hitdebounce = true
 				ws = 10
 				clickallowance = true
 				blockedoff = false
 			end)
 		end
-	end
-end)
-
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='f' then
+	elseif Press=='f' then
 		if debounce then return end
 		if notallowedtransform then return end
 		debounce = true
@@ -2364,152 +2345,9 @@ mouse.KeyDown:connect(function(Press)
 				notallowedtransform = false
 			end)()
 		end
-	end
-end)
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='n' then
+	elseif Press=='n' then
 		hum.Parent:BreakJoints()
-	end
-end)
-
-checks1 = coroutine.wrap(function() -------Checks
-	while true do
-		if Root.Velocity.y > 1 and levitate == false then
-			position = "Jump"
-		elseif Root.Velocity.y < -1 and levitate == false then
-			position = "Falling"
-		elseif Root.Velocity.Magnitude < 2 and running == false and not levitate then
-			position = "Idle"
-		elseif Root.Velocity.Magnitude < 2 and running == false then
-			position = "Idle2"
-		elseif Root.Velocity.Magnitude < 20 and running == false and levitate == false then
-			position = "Walking"
-		elseif Root.Velocity.Magnitude > 20 and running == false and levitate then
-			position = "Walking2"
-		elseif Root.Velocity.Magnitude > 20 and levitate == false then
-			position = "Running"
-		else
-		end
-		wait()
-	end
-end)
-checks1()
-
-function ray(POSITION, DIRECTION, RANGE, IGNOREDECENDANTS)
-	return workspace:FindPartOnRay(Ray.new(POSITION, DIRECTION.unit * RANGE), IGNOREDECENDANTS)
-end
-
-function ray2(StartPos, EndPos, Distance, Ignore)
-	local DIRECTION = CFrame.new(StartPos,EndPos).lookVector
-	return ray(StartPos, DIRECTION, Distance, Ignore)
-end
-
-OrgnC0 = Neck.C0
-local movelimbs = coroutine.wrap(function()
-	while RunSrv.RenderStepped:wait() do
-		TrsoLV = Torso.CFrame.lookVector
-		Dist = nil
-		Diff = nil
-		if not MseGuide then
-			print("Failed to recognize")
-		else
-			local _, Point = Workspace:FindPartOnRay(Ray.new(Head.CFrame.p, mouse.Hit.lookVector), Workspace, false, true)
-			Dist = (Head.CFrame.p-Point).magnitude
-			Diff = Head.CFrame.Y-Point.Y
-			local _, Point2 = Workspace:FindPartOnRay(Ray.new(LeftArm.CFrame.p, mouse.Hit.lookVector), Workspace, false, true)
-			Dist2 = (LeftArm.CFrame.p-Point).magnitude
-			Diff2 = LeftArm.CFrame.Y-Point.Y
-			HEADLERP.C0 = CFrame.new(0, -1.5, -0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0))
-			Neck.C0 = Neck.C0:lerp(OrgnC0*CFrame.Angles((math.tan(Diff/Dist)*1), 0, (((Head.CFrame.p-Point).Unit):Cross(Torso.CFrame.lookVector)).Y*1), .1)
-		end
-	end
-end)
-movelimbs()
-immortal = {}
-for i,v in pairs(Character:GetDescendants()) do
-	if v:IsA("BasePart") and v.Name ~= "lmagic" and v.Name ~= "rmagic" then
-		if v ~= Root and v ~= Torso and v ~= Head and v ~= RightArm and v ~= LeftArm and v ~= RightLeg and v.Name ~= "lmagic" and v.Name ~= "rmagic" and v ~= LeftLeg then
-			v.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
-		end
-		table.insert(immortal,{v,v.Parent,v.Material,v.Color,v.Transparency})
-	elseif v:IsA("JointInstance") then
-		table.insert(immortal,{v,v.Parent,nil,nil,nil})
-	end
-end
-for e = 1, #immortal do
-	if immortal[e] ~= nil then
-		local STUFF = immortal[e]
-		local PART = STUFF[1]
-		local PARENT = STUFF[2]
-		local MATERIAL = STUFF[3]
-		local COLOR = STUFF[4]
-		local TRANSPARENCY = STUFF[5]
-		if levitate then
-			if PART.ClassName == "Part" and PART ~= Root and PART.Name ~= eyo1 and PART.Name ~= eyo2 and PART.Name ~= "lmagic" and PART.Name ~= "rmagic" then
-				PART.Material = MATERIAL
-				PART.Color = COLOR
-				PART.Transparency = TRANSPARENCY
-			end
-			PART.AncestryChanged:connect(function()
-				PART.Parent = PARENT
-			end)
-		else
-			if PART.ClassName == "Part" and PART ~= Root and PART.Name ~= "lmagic" and PART.Name ~= "rmagic" then
-				PART.Material = MATERIAL
-				PART.Color = COLOR
-				PART.Transparency = TRANSPARENCY
-			end
-			PART.AncestryChanged:connect(function()
-				PART.Parent = PARENT
-			end)
-		end
-	end
-end
-function immortality()
-	for e = 1, #immortal do
-		if immortal[e] ~= nil then
-			local STUFF = immortal[e]
-			local PART = STUFF[1]
-			local PARENT = STUFF[2]
-			local MATERIAL = STUFF[3]
-			local COLOR = STUFF[4]
-			local TRANSPARENCY = STUFF[5]
-			if PART.ClassName == "Part" and PART == Root then
-				PART.Material = MATERIAL
-				PART.Color = COLOR
-				PART.Transparency = TRANSPARENCY
-			end
-			if PART.Parent ~= PARENT then
-				hum:Remove()
-				PART.Parent = PARENT
-				hum = Instance.new("Humanoid",Character)
-				if levitate then
-					eyo1:Remove()
-					eyo2:Remove()
-				end
-				hum.Name = "noneofurbusiness"
-			end
-		end
-	end
-end
-coroutine.wrap(function()
-	while true do
-		if hum.Health < .1 then
-			deadsound = Instance.new("Sound", Torso)
-			deadsound.Volume = 6
-			deadsound.SoundId = "rbxassetid://1411352723"
-			deadsound:Play()
-			immortality()
-		end
-		wait()
-	end
-end)()
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='g' then
+	elseif Press=='g' then
 		if not levitate then return end
 		if debounce then return end
 		debounce = true
@@ -2657,12 +2495,7 @@ mouse.KeyDown:connect(function(Press)
 		removeuseless:AddItem(g1,0.01)
 		debounce = false
 		attacking = false
-	end
-end)
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='h' then
+	elseif Press=='h' then
 		if not levitate then return end
 		if debounce then return end
 		debounce = true
@@ -2967,12 +2800,7 @@ mouse.KeyDown:connect(function(Press)
 		attacking = false
 		debounce = false
 		appi = false
-	end
-end)
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='j' then
+	elseif Press=='j' then
 		if not levitate then return end
 		if debounce then return end
 		debounce = true
@@ -3173,12 +3001,7 @@ mouse.KeyDown:connect(function(Press)
 		debounce = false
 		appi = false
 		g1:Remove()
-	end
-end)
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='k' then
+	elseif Press=='k' then
 		if debounce then return end
 		debounce = true
 		attacking = true
@@ -3334,17 +3157,17 @@ mouse.KeyDown:connect(function(Press)
 		appi = false
 		attacking = false
 		debounce = false
-	end
-end)
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='m' then
+	elseif Press=='m' then
 		if doomtheme.Playing then
 			doomtheme:Pause()
 		else
 			doomtheme:Resume()
 		end
+	elseif Press=='b' then
+		if levitate then return end
+		shoov = true
+		if debounce then return end
+		ws = 50
 	end
 end)
 
@@ -3352,15 +3175,139 @@ mouse.KeyUp:connect(function(Press)
 	Press=Press:lower()
 	if Press=='j' then
 		charging = false
+	elseif Press=='k' then
+		charging = false
+	elseif Press=='b' then
+		if levitate then return end
+		shoov = false
+		if debounce then return end
+		ws = 10
 	end
 end)
 
-mouse.KeyUp:connect(function(Press)
-	Press=Press:lower()
-	if Press=='k' then
-		charging = false
+checks1 = coroutine.wrap(function() -------Checks
+	while true do
+		if Root.Velocity.y > 1 and levitate == false then
+			position = "Jump"
+		elseif Root.Velocity.y < -1 and levitate == false then
+			position = "Falling"
+		elseif Root.Velocity.Magnitude < 2 and running == false and not levitate then
+			position = "Idle"
+		elseif Root.Velocity.Magnitude < 2 and running == false then
+			position = "Idle2"
+		elseif Root.Velocity.Magnitude < 20 and running == false and levitate == false then
+			position = "Walking"
+		elseif Root.Velocity.Magnitude > 20 and running == false and levitate then
+			position = "Walking2"
+		elseif Root.Velocity.Magnitude > 20 and levitate == false then
+			position = "Running"
+		else
+		end
+		wait()
 	end
 end)
+checks1()
+
+OrgnC0 = Neck.C0
+local movelimbs = coroutine.wrap(function()
+	while RunSrv.RenderStepped:wait() do
+		TrsoLV = Torso.CFrame.lookVector
+		Dist = nil
+		Diff = nil
+		if not MseGuide then
+			print("Failed to recognize")
+		else
+			local _, Point = Workspace:FindPartOnRay(Ray.new(Head.CFrame.p, mouse.Hit.lookVector), Workspace, false, true)
+			Dist = (Head.CFrame.p-Point).magnitude
+			Diff = Head.CFrame.Y-Point.Y
+			local _, Point2 = Workspace:FindPartOnRay(Ray.new(LeftArm.CFrame.p, mouse.Hit.lookVector), Workspace, false, true)
+			Dist2 = (LeftArm.CFrame.p-Point).magnitude
+			Diff2 = LeftArm.CFrame.Y-Point.Y
+			HEADLERP.C0 = CFrame.new(0, -1.5, -0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0))
+			Neck.C0 = Neck.C0:lerp(OrgnC0*CFrame.Angles((math.tan(Diff/Dist)*1), 0, (((Head.CFrame.p-Point).Unit):Cross(Torso.CFrame.lookVector)).Y*1), .1)
+		end
+	end
+end)
+movelimbs()
+immortal = {}
+for i,v in pairs(Character:GetDescendants()) do
+	if v:IsA("BasePart") and v.Name ~= "lmagic" and v.Name ~= "rmagic" then
+		if v ~= Root and v ~= Torso and v ~= Head and v ~= RightArm and v ~= LeftArm and v ~= RightLeg and v.Name ~= "lmagic" and v.Name ~= "rmagic" and v ~= LeftLeg then
+			v.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
+		end
+		table.insert(immortal,{v,v.Parent,v.Material,v.Color,v.Transparency})
+	elseif v:IsA("JointInstance") then
+		table.insert(immortal,{v,v.Parent,nil,nil,nil})
+	end
+end
+for e = 1, #immortal do
+	if immortal[e] ~= nil then
+		local STUFF = immortal[e]
+		local PART = STUFF[1]
+		local PARENT = STUFF[2]
+		local MATERIAL = STUFF[3]
+		local COLOR = STUFF[4]
+		local TRANSPARENCY = STUFF[5]
+		if levitate then
+			if PART.ClassName == "Part" and PART ~= Root and PART.Name ~= eyo1 and PART.Name ~= eyo2 and PART.Name ~= "lmagic" and PART.Name ~= "rmagic" then
+				PART.Material = MATERIAL
+				PART.Color = COLOR
+				PART.Transparency = TRANSPARENCY
+			end
+			PART.AncestryChanged:connect(function()
+				PART.Parent = PARENT
+			end)
+		else
+			if PART.ClassName == "Part" and PART ~= Root and PART.Name ~= "lmagic" and PART.Name ~= "rmagic" then
+				PART.Material = MATERIAL
+				PART.Color = COLOR
+				PART.Transparency = TRANSPARENCY
+			end
+			PART.AncestryChanged:connect(function()
+				PART.Parent = PARENT
+			end)
+		end
+	end
+end
+function immortality()
+	for e = 1, #immortal do
+		if immortal[e] ~= nil then
+			local STUFF = immortal[e]
+			local PART = STUFF[1]
+			local PARENT = STUFF[2]
+			local MATERIAL = STUFF[3]
+			local COLOR = STUFF[4]
+			local TRANSPARENCY = STUFF[5]
+			if PART.ClassName == "Part" and PART == Root then
+				PART.Material = MATERIAL
+				PART.Color = COLOR
+				PART.Transparency = TRANSPARENCY
+			end
+			if PART.Parent ~= PARENT then
+				hum:Remove()
+				PART.Parent = PARENT
+				hum = Instance.new("Humanoid",Character)
+				if levitate then
+					eyo1:Remove()
+					eyo2:Remove()
+				end
+				hum.Name = "noneofurbusiness"
+			end
+		end
+	end
+end
+coroutine.wrap(function()
+	while true do
+		if hum.Health < .1 then
+			deadsound = Instance.new("Sound", Torso)
+			deadsound.Volume = 6
+			deadsound.SoundId = "rbxassetid://1411352723"
+			deadsound:Play()
+			immortality()
+		end
+		wait()
+	end
+end)()
 
 doit = coroutine.wrap(function()
 	while true do
@@ -3465,27 +3412,6 @@ doit = coroutine.wrap(function()
 end)
 doit()
 t = 0
-
-mouse.KeyDown:connect(function(Press)
-	Press=Press:lower()
-	if Press=='b' then
-		if levitate then return end
-		shoov = true
-		if debounce then return end
-		ws = 50
-	end
-end)
-
-mouse.KeyUp:connect(function(Press)
-	Press=Press:lower()
-	if Press=='b' then
-		if levitate then return end
-		shoov = false
-		if debounce then return end
-		ws = 10
-	end
-end)
-
 
 local anims = coroutine.wrap(function()
 	while true do
