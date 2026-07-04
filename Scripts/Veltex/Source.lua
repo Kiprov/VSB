@@ -4677,7 +4677,6 @@ o53.Scale = Vector3.new(7.24803305, 7.24803591, 7.24803352)
 local partSize = Vector3.new(3.533512830734253, 5.08600378036499, 3.9424831867218018)
 local meshSize = Vector3.new(0.458279013633728, 0.69930499792099, 0.5172048211097717)
 hairo.BrickColor = BrickColor.new("Cocoa")
-hairo.MeshId = "rbxassetid://560196103"
 hairo.Size = partSize
 hairo.Anchored = false
 hairo.CanCollide = false
