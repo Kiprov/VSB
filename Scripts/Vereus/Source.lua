@@ -274,7 +274,7 @@ doomtheme = Instance.new("Sound",Torso)
 doomtheme.Volume = 4
 doomtheme.Name = "doomtheme"
 doomtheme.Looped = true
-doomtheme.SoundId = "rbxassetid://1837278308"
+doomtheme.SoundId = "rbxassetid://77015899078113"
 doomtheme.TimePosition = 0
 doomtheme:Play()
 else
@@ -1190,7 +1190,7 @@ swait()
 end
 nball:Remove()
 end)()
-doomtheme.SoundId = "rbxassetid://1837278308"
+doomtheme.SoundId = "rbxassetid://77015899078113"
 doomtheme:Play()
 doomtheme.Volume = 6
 doomtheme.Pitch = 1
