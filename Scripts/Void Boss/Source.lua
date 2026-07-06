@@ -17,6 +17,7 @@ controls(script.Name,[[
 *C - Pitiful Grab
 *V - Catastrophic Pillars
 P - Phase 2/Phase 1
+M - Theme Toggle
 ]])
 local TweenService = game:GetService("TweenService")
 local RbxUtility = LoadLibrary("RbxUtility")
@@ -3767,6 +3768,9 @@ Mouse.KeyDown:Connect(function(key)
 	end
 	if key == "p" and attack == false then
 		SwitchMode()
+	end
+	if key == "m" then
+		s2.Playing = not s2.Playing
 	end
 end)
 
