@@ -226,26 +226,9 @@ VL["e"]["BackgroundTransparency"] = 1;
 VL["e"]["RichText"] = true;
 VL["e"]["Size"] = UDim2.new(0, 374, 0, 20);
 VL["e"]["Text"] = [[<b>sr - Respawns your character at the same position.</b>]];
-VL["e"]["LayoutOrder"] = 3;
+VL["e"]["LayoutOrder"] = 2;
 VL["e"]["Name"] = [[CMD]];
 VL["e"]["Position"] = UDim2.new(0, 0, 0, 72);
-
--- StarterGui.VoidLoader.TopBar.MainFrame.TabFrames.Commands.CMDs.CMD
-VL["e1"] = Instance.new("TextLabel", VL["9"]);
-VL["e1"]["TextWrapped"] = true;
-VL["e1"]["BorderSizePixel"] = 0;
-VL["e1"]["TextSize"] = 12;
-VL["e1"]["TextXAlignment"] = Enum.TextXAlignment.Left;
-VL["e1"]["TextYAlignment"] = Enum.TextYAlignment.Top;
-VL["e1"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-VL["e1"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-VL["e1"]["BackgroundTransparency"] = 1;
-VL["e1"]["RichText"] = true;
-VL["e1"]["Size"] = UDim2.new(0, 374, 0, 20);
-VL["e1"]["Text"] = [[<b>quit - Quits the current Void Loader session.</b>]];
-VL["e1"]["LayoutOrder"] = 4;
-VL["e1"]["Name"] = [[CMD]];
-VL["e1"]["Position"] = UDim2.new(0, 0, 0, 72);
 
 
 -- StarterGui.VoidLoader.TopBar.MainFrame.TabFrames.Commands.TheEnd
@@ -584,12 +567,12 @@ local cmds = {
 		owner.Character:PivotTo(pivot)
 	end,
 	["quit"] = function()
-		remote:FireClient(owner, "quit")
+		session.Remote:FireClient(owner, "quit")
 		repeat wait() until owner.PlayerGui:FindFirstChild("VoidLoader") == nil
 		deploy:Destroy()
-		script:Destroy()
 		_G.Sessions[owner.UserId] = nil
 		warn("quit the current Void Loader session.")
+		script:Destroy()
 	end,
 }
 remote.OnServerEvent:Connect(function(plr, command)
@@ -599,7 +582,7 @@ remote.OnServerEvent:Connect(function(plr, command)
 		return
 	end
 	for i, v in next, cmds do
-		if string.find(command, i) then
+		if string.sub(command, 1, string.len(i)) == i then
 			print("cmd found")
 			local cmd = v
 			cmd(command)
@@ -681,7 +664,6 @@ function switchTab(tab)
 	db = false
 end
 --// Connections
-cmdbar.Text = ""
 for i, v in next, tabs:GetChildren() do
 	if v:IsA("TextButton") then
 		v.MouseButton1Click:Connect(function()
@@ -717,7 +699,6 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 	if gameProcessedEvent then return end
 	if input.KeyCode == Enum.KeyCode.Comma then
 		cmdbar:CaptureFocus()
-	    task.wait()
 		cmdbar.Text = ""
 	end
 end)
