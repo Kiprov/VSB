@@ -2022,7 +2022,7 @@ mouse.KeyDown:connect(function(key)
 				wait()
 			end
 			BV:Destroy()
-			local voice = so(100840061198163, char, 1.05, 10)
+			local voice = so(88737588433644, char, 1.05, 10)
 			spawn(function()
 				for i = 1, 60 do
 					rarm.Weld.C0 = Lerp(rarm.Weld.C0, CFrame.new(2.4, 2.4, 0)*CFrame.Angles(math.rad(170),math.rad(0),math.rad(-10)), 0.4)
