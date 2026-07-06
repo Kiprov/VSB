@@ -32,6 +32,8 @@ T - Unleashed Evil Ball/Taunt
 +R - Hunt
 Z - Crazy Xester Switch
 X - Re_*101011Dact/^ed.exe
+N - Theme Toggle
+M - Refit
 ]])
 Player=game:GetService("Players").LocalPlayer
 Character=Player.Character
@@ -565,6 +567,8 @@ mouse.KeyDown:connect(function(Press)
 Press=Press:lower()
 if Press=='m' then
 immortality()
+elseif Press=='n' then
+doomtheme.Playing = not doomtheme.Playing
 elseif Press=='t' then
 if xester then
 if tauntdebounce then return end
@@ -1050,7 +1054,9 @@ realmofexistence:Play()
 end)()
 wait(2.2)
 doomtheme.SoundId = "rbxassetid://9038254260"
-doomtheme:Play()
+if doomtheme.Playing then
+	doomtheme:Play()
+end
 doomtheme.Pitch = 1
 doomtheme.TimePosition = 0
 for i = 1, 30 do
