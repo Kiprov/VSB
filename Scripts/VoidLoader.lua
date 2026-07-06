@@ -567,12 +567,12 @@ local cmds = {
 		owner.Character:PivotTo(pivot)
 	end,
 	["quit"] = function()
-		session.Remote:FireClient(owner, "quit")
+		remote:FireClient(owner, "quit")
 		repeat wait() until owner.PlayerGui:FindFirstChild("VoidLoader") == nil
 		deploy:Destroy()
+		script:Destroy()
 		_G.Sessions[owner.UserId] = nil
 		warn("quit the current Void Loader session.")
-		script:Destroy()
 	end,
 }
 remote.OnServerEvent:Connect(function(plr, command)
