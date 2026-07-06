@@ -717,6 +717,7 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 	if gameProcessedEvent then return end
 	if input.KeyCode == Enum.KeyCode.Comma then
 		cmdbar:CaptureFocus()
+	    task.wait()
 		cmdbar.Text = ""
 	end
 end)
