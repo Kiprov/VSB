@@ -681,6 +681,7 @@ function switchTab(tab)
 	db = false
 end
 --// Connections
+cmdbar.Text = ""
 for i, v in next, tabs:GetChildren() do
 	if v:IsA("TextButton") then
 		v.MouseButton1Click:Connect(function()
