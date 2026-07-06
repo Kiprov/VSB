@@ -566,7 +566,7 @@ Torso.ChildRemoved:connect(function(removed)
 			doomtheme.Volume = 3
 			doomtheme.Name = "doomtheme"
 			doomtheme.Looped = true
-			doomtheme.SoundId = "rbxassetid://1837278308"
+			doomtheme.SoundId = "rbxassetid://77015899078113"
 			doomtheme:Play()
 		else
 			doomtheme = Instance.new("Sound", Torso)
@@ -2337,7 +2337,7 @@ mouse.KeyDown:connect(function(Press)
 				sp.Value = 0
 				framee:Remove()
 			end)()
-			doomtheme.SoundId = "rbxassetid://1837278308"
+			doomtheme.SoundId = "rbxassetid://77015899078113"
 			doomtheme:Play()
 			doomtheme.Volume = 2
 			doomtheme.TimePosition = 20.7
