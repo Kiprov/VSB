@@ -29,18 +29,7 @@ warn("loading")
 repeat wait() until _G.loader ~= nil
 warn("loaded the loader script, almost done.")
 local loader = _G.loader
-local scripts = [[
-BDD41,
-Genocider,
-Guest 666,
-Laptop Boss,
-SB Shotgun,
-Vereus,
-Void Boss,
-Nuclear Toxic Hulk,
-Veltex,
-Xester.
-]]
+local scripts = [[BDD41, Genocider, Guest 666, Laptop Boss, SB Shotgun, Vereus, Void Boss, Nuclear Toxic Hulk, Veltex, Xester, Shrike.]]
 --// UI
 local VL = {};
 
@@ -633,6 +622,7 @@ local mainframeMaximize = TweenService:Create(mainframe, animInfo, {Size = UDim2
 local mainframeMinimize = TweenService:Create(mainframe, animInfo, {Size = UDim2.fromOffset(500, 30)})
 --// Functions
 function open()
+    state = "max"
 	topbar.Visible = true
 	toggle.Visible = false
 	topbarMaximize:Play()
