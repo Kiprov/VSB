@@ -33,7 +33,7 @@ do
 		G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 		G2L["1"]["ResetOnSpawn"] = false;
 		G2L["1"]["IgnoreGuiInset"] = true;
-		G2L["1"]["DisplayOrder"] = math.huge;
+		G2L["1"]["DisplayOrder"] = 2147483647;
 		G2L["1"]["Enabled"] = false;
 
 		-- StarterGui.DeltaKeyboard.Main
