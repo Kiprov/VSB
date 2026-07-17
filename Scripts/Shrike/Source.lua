@@ -25,7 +25,7 @@ F - Phase Switch
 G - Shotgun
 H - Sidekick
 J - Portal
-+K - Dice
++K - Dice Shuriken
 L - Kamikaze
 B - Glasses cosmetic
 *V - Raygun Mode
@@ -1658,6 +1658,7 @@ gunbox:Remove()
 eyes:Remove()
 sidekickshootanim = false
 sidekick = false
+ws = 32
 debounce = false
 else
 if debounce then return end
