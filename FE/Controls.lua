@@ -42,6 +42,6 @@ CONTROLS:
 		    Frm.Position=Frm.Position:lerp(UDim2.new(not Show and 1 or .7,0,.5,0),.1)
 	    end
     end)
-    print("creates controls gui.")
+    print("created controls gui.")
 end
 _G.controls = c
