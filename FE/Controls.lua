@@ -9,6 +9,7 @@ function c(scriptName,moveset)
 CONTROLS: 
 ]]..moveset
     local MovesGui=Instance.new("ScreenGui",owner:FindFirstChildOfClass("PlayerGui"))
+	MovesGui.IgnoreGuiInset = true
 	local Frm=Instance.new("Frame",MovesGui)
     Frm.BackgroundColor3=Color3.new()
     Frm.BorderSizePixel=0
